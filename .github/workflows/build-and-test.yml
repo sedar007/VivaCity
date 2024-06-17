@@ -18,10 +18,10 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet VivaCityWebApi/restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet VivaCityWebApi/build --no-restore
     - name: Test
-      run: dotnet test
+      run: dotnet VivaCityWebApi/test
       env:
-        SQLConnectionString: ''
+        SQLConnectionString: ${{ secrets.SQLConnectionString }}
