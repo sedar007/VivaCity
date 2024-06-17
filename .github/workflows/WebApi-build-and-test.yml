@@ -1,4 +1,4 @@
-name: build and test
+name: WebApi build and test
 
 on:
   push:
