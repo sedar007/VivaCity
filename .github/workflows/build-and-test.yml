@@ -2,9 +2,9 @@ name: build and test
 
 on:
   push:
-    branches: [ "feature/21-webapi-continuous-integration" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
