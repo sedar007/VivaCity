@@ -6,9 +6,9 @@ import {
   } from 'react-router-dom';
   
   
-  import Home from '../Home';
-  import Login from '../Login';
-  import Games from '../Games';
+  import Home from '../../pages/Home';
+  import Login from '../../pages/Login';
+  import Games from '../../pages/Games';
   
   const router = createBrowserRouter([
       {
