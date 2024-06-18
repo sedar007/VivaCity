@@ -7,6 +7,7 @@ function classNames(...classes) {
 }
 const LanguageSelect = () => {
     const { languages, onClickLanguageChange } = useLanguageContext();
+    const { t } = useLanguageContext();
     return (
         <div>
             {Object.keys(languages).map((lng) => (
@@ -17,7 +18,7 @@ const LanguageSelect = () => {
                         <div
                             className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                         >
-                            {languages[lng].nativeName}
+                            {t(languages[lng].nativeName)}
                         </div>
                     )}
                 </MenuItem>
