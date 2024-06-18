@@ -8,6 +8,7 @@
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
 		<RootNamespace>VivaCityWebApi.WebApi.Tests</RootNamespace>
+		<UserSecretsId>02d6cdb2-fcfe-431c-91c9-bfdfa11a9924</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>

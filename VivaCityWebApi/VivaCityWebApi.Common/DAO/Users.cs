@@ -1,17 +1,13 @@
-using VivaCityWebApi.Business.Interfaces;
-using VivaCityWebApi.Common.DTO;
-using VivaCityWebApi.Common.Requests;
-using VivaCityWebApi.DataAccess.Interfaces;
-using Microsoft.Extensions.Logging;
+﻿namespace VivaCityWebApi.Common.DAO {
+	public class Users  {
+		public string Id;
+		private List<Village> batiments;
+		private string pseudo;
+		private readonly string name;
+		private List<Ressources> ressources;
+		
 
-namespace VivaCityWebApi.Business.Implementations {
-	public class GameService : IGameService {
-		private readonly IGamesDataAccess _gameDataAccess;
-		private readonly ILogger<GameService> _logger;
-		public GameService(ILogger<GameService> logger, IGamesDataAccess gameDataAccess) {
-			_logger = logger;
-			_gameDataAccess = gameDataAccess;
-		}
+		
 
 		/*public async Task<IEnumerable<GameDto>> GetGames() {
 			try {
