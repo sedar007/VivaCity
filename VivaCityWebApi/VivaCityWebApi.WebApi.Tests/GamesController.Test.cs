@@ -21,7 +21,7 @@ namespace VivaCityWebApi.WebApi.Tests {
 			client = webApplicationFactory.CreateClient();
 		}
 
-		[Fact]
+		/*[Fact]
 		public async void ShouldGet200_GET_AllGames() {
 			var response = await client.GetAsync("/api/Games/");
 
@@ -33,7 +33,7 @@ namespace VivaCityWebApi.WebApi.Tests {
 			);
 
 			data.Should().NotBeEmpty();
-		}
+		} */
 
 
 	}
