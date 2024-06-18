@@ -20,7 +20,7 @@ const navigation = [
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
-
+ 
 export default function Header() {
     return (
         <Disclosure as="nav" className="bg-gray-800">
