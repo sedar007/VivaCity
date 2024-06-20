@@ -41,6 +41,9 @@ namespace VivaCityWebApi.DataAccess.Migrations
                         .HasColumnType("integer")
                         .HasDefaultValueSql("nextval('batiment_id_seq')");
 
+                    b.Property<int?>("CoutId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Level")
                         .HasColumnType("integer");
 
@@ -52,6 +55,8 @@ namespace VivaCityWebApi.DataAccess.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CoutId");
 
                     b.HasIndex("VillageId");
 
@@ -91,7 +96,17 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.Property<double>("Nbr")
                         .HasColumnType("double precision");
 
+                    b.Property<int?>("RessourceItemId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("VillageId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RessourceItemId");
+
+                    b.HasIndex("VillageId");
 
                     b.ToTable("Ressources");
                 });
@@ -154,20 +169,19 @@ namespace VivaCityWebApi.DataAccess.Migrations
 
             modelBuilder.Entity("VivaCityWebApi.Common.DAO.BatimentDao", b =>
                 {
-                    b.HasOne("VivaCityWebApi.Common.DAO.CoutDao", "cout")
+                    b.HasOne("VivaCityWebApi.Common.DAO.CoutDao", "Cout")
                         .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CoutId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("VivaCityWebApi.Common.DAO.VillageDao", "Village")
-                        .WithMany("batiments")
+                        .WithMany("Batiments")
                         .HasForeignKey("VillageId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("Village");
+                    b.Navigation("Cout");
 
-                    b.Navigation("cout");
+                    b.Navigation("Village");
                 });
 
             modelBuilder.Entity("VivaCityWebApi.Common.DAO.CoutDao", b =>
@@ -184,15 +198,13 @@ namespace VivaCityWebApi.DataAccess.Migrations
                 {
                     b.HasOne("VivaCityWebApi.Common.DAO.RessourceItemDao", "RessourceItem")
                         .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RessourceItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("VivaCityWebApi.Common.DAO.UserDao", null)
+                    b.HasOne("VivaCityWebApi.Common.DAO.VillageDao", null)
                         .WithMany("Ressources")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VillageId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("RessourceItem");
                 });
@@ -209,14 +221,14 @@ namespace VivaCityWebApi.DataAccess.Migrations
 
             modelBuilder.Entity("VivaCityWebApi.Common.DAO.UserDao", b =>
                 {
-                    b.Navigation("Ressources");
-
                     b.Navigation("Villages");
                 });
 
             modelBuilder.Entity("VivaCityWebApi.Common.DAO.VillageDao", b =>
                 {
-                    b.Navigation("batiments");
+                    b.Navigation("Batiments");
+
+                    b.Navigation("Ressources");
                 });
 #pragma warning restore 612, 618
         }

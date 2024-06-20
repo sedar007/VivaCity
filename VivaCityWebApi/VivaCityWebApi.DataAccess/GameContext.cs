@@ -41,9 +41,9 @@ namespace VivaCityWebApi.DataAccess {
 			villageDaoBuilder.HasKey(x => x.Id);
 			ressourceItemDaoBuilder.HasKey(x => x.Id);
 			//userDaoBuilder.HasKey(x => x.Pseudo);
-			batimentDaoBuilder.HasOne<CoutDao>(x => x.cout)
+			batimentDaoBuilder.HasOne<CoutDao>(x => x.Cout)
 				.WithMany()
-				.HasForeignKey(x => x.Id)
+				.HasForeignKey(x => x.CoutId)
 				.OnDelete(DeleteBehavior.Cascade);
 			
 			coutDaoBuilder.HasOne<RessourceDao>(x => x.Ressource)
@@ -53,12 +53,7 @@ namespace VivaCityWebApi.DataAccess {
 			
 			ressourceDaoBuilder.HasOne<RessourceItemDao>(x => x.RessourceItem)
 				.WithMany()
-				.HasForeignKey(x => x.Id)
-				.OnDelete(DeleteBehavior.Cascade);
-			
-			usersDaoBuilder.HasMany<RessourceDao>(x=> x.Ressources)
-				.WithOne()
-				.HasForeignKey(x => x.Id)
+				.HasForeignKey(x => x.RessourceItemId)
 				.OnDelete(DeleteBehavior.Cascade);
 
 			usersDaoBuilder.HasMany<VillageDao>(x => x.Villages)
@@ -66,13 +61,15 @@ namespace VivaCityWebApi.DataAccess {
 				.HasForeignKey(x => x.UserId)
 				.OnDelete(DeleteBehavior.Cascade);
 			
-			villageDaoBuilder.HasMany<BatimentDao>(x => x.batiments)
+			villageDaoBuilder.HasMany<BatimentDao>(x => x.Batiments)
 				.WithOne(x => x.Village)
 				.HasForeignKey(x => x.VillageId)
 				.OnDelete(DeleteBehavior.Cascade);
 			
-			
-			
+			villageDaoBuilder.HasMany<RessourceDao>(x => x.Ressources)
+				.WithOne()
+				.HasForeignKey(x => x.VillageId)
+				.OnDelete(DeleteBehavior.Cascade);
 			
 			
 			/*gameBuilder.Property(x => x.Id).HasColumnType("varchar");

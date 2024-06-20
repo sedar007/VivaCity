@@ -17,6 +17,10 @@ namespace VivaCityWebApi.DataAccess.Implementations {
         public Task<RessourceItemDao?> GetRessourceItemById(int id) {
             return _context.RessourceItem.FirstOrDefaultAsync(x => x.Id == id);
         }
+        
+        public Task<RessourceItemDao?> GetRessourceItemById(int? id) {
+            return _context.RessourceItem.FirstOrDefaultAsync(x => x.Id == id);
+        }
 
         public async Task<IEnumerable<RessourceItemDao>> SearchByName(string name) {
             return _context.RessourceItem.Where(x => x.Name.Contains(name));
