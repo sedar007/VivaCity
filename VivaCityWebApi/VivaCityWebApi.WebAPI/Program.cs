@@ -47,6 +47,8 @@ public class Program {
 			builder.Services.AddTransient<IRessourceService, RessourceService>();
 			builder.Services.AddTransient<ICoutDataAccess, CoutDataAccess>();
 			builder.Services.AddTransient<ICoutService, CoutService>();
+			builder.Services.AddTransient<IBatimentDataAccess, BatimentDataAccess>();
+			builder.Services.AddTransient<IBatimentService, BatimentService>();
 
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
