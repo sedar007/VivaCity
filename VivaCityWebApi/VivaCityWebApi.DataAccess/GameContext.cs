@@ -47,6 +47,9 @@ namespace VivaCityWebApi.DataAccess {
 				.HasMaxLength(255)
 				.IsUnicode(true)
 				.HasColumnType("varchar");*/
+
+			modelBuilder.HasSequence("user_id_seq");
+			usersBuilder.Property(x => x.Id).HasDefaultValueSql("nextval('user_id_seq')");
 		}
 	}
 }
