@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VivaCityWebApi.WebAPI.Controller {
 	[ApiController]
-	[Route("api/ressourceItem/[controller]")]
+	[Route("api/[controller]")]
 	public class RessourceItemsController : ControllerBase {
 		private readonly IRessourceItemService _ressourceItemService;
 		public RessourceItemsController(IRessourceItemService ressourceItemService) {
@@ -35,7 +35,7 @@ namespace VivaCityWebApi.WebAPI.Controller {
 			return Ok(await _ressourceItemService.SearchByName(name));
 		}
 
-		[HttpPost]
+	/*	[HttpPost]
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public async Task<ActionResult> Create(RessourceItemCreationRequest ressourceItemRequest) {
@@ -69,6 +69,6 @@ namespace VivaCityWebApi.WebAPI.Controller {
 			} catch (InvalidDataException) {
 				return NotFound();
 			}
-		}
+		} */
 	}
 }
