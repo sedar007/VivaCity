@@ -11,6 +11,7 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import logo from '../../assets/vivacityLogo.png';
+import avatar from '../../assets/avatar.jpg';
 import Language from "../Language/index.jsx";
 import React from "react";
 import {useLanguageContext} from "../../contexts/languageContext.jsx";
@@ -23,8 +24,8 @@ function classNames(...classes) {
 export default function Header() {
     const { t } = useLanguageContext();
     const navigation = [
-        { name: t('Game') , href: '', current: true },
-        { name: t('Rank'), href: '/Rank', current: false },
+        { name: t('Game') , href: '/', current: true },
+        { name: t('Rank'), href: '/rank', current: false },
     ]
 
     return (
@@ -59,11 +60,10 @@ export default function Header() {
                                             <a
                                                 key={item.name}
                                                 href={item.href}
-                                                className={classNames(
-                                                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                className={classNames('text-gray-300 hover:bg-gray-700 hover:text-white',
                                                     'rounded-md px-3 py-2 text-sm font-medium',
                                                 )}
-                                                aria-current={item.current ? 'page' : undefined}
+
                                             >
                                                 {item.name}
                                             </a>
@@ -72,14 +72,6 @@ export default function Header() {
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <button
-                                    type="button"
-                                    className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                                >
-                                    <span className="absolute -inset-1.5" />
-                                    <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                                </button>
 
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="relative ml-3">
@@ -89,7 +81,7 @@ export default function Header() {
                                             <span className="sr-only">Open user menu</span>
                                             <img
                                                 className="h-8 w-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                src={avatar}
                                                 alt=""
                                             />
                                         </MenuButton>
@@ -106,10 +98,10 @@ export default function Header() {
                                             <MenuItem>
                                                 {({ focus }) => (
                                                     <a
-                                                        href="#"
+                                                        href="/outxxx"
                                                         className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
-                                                        Your Profile
+                                                        {t('logout')}
                                                     </a>
                                                 )}
                                             </MenuItem>
@@ -119,14 +111,13 @@ export default function Header() {
 
 
 
-
                                 <Menu as="div" className="relative ml-3 border-0">
                                     <div>
                                         <MenuButton className="relative flex bg-gray-800 text-sm border-0">
                                             <span className="absolute -inset-1.5 border-0"  />
                                             <span className="sr-only">Open user menu</span>
 
-                                            <span className="text-red-500"> Language</span>
+                                            <span className="text-red-500">  {t('Language')} </span>
                                         </MenuButton>
                                     </div>
                                     <Transition

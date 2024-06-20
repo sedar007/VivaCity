@@ -11,7 +11,7 @@ export const LanguageContextProvider = ({ children }) => {
     const { t, i18n } = useTranslation();
 
     const onClickLanguageChange = (language) => {
-        console.log(language);
+        localStorage.setItem('lng', language);
         i18n.changeLanguage(language); // Change the language
     };
 

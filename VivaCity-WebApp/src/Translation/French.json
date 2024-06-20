@@ -1,7 +1,8 @@
 {
-  "Language": "Français",
+  "Language": "Langue",
   "French": "Français",
   "English": "Anglais",
   "Game": "Jeu",
-  "Rank": "Classement"
+  "Rank": "Classement",
+  "logout": "Se déconnecter"
 }

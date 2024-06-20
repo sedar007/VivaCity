@@ -9,6 +9,8 @@ import {
   import Home from '../../pages/Home';
   import Login from '../../pages/Login';
   import Games from '../../pages/Games';
+import Rank from "../../pages/Rank/index.jsx";
+import LogOut from "../../pages/LogOut/index.jsx";
   
   const router = createBrowserRouter([
       {
@@ -19,12 +21,24 @@ import {
                   element: <Home />,
               },
               {
+                  path: "/home",
+                  element: <Home />,
+              },
+              {
                   path: "/login",
                   element: <Login />,
               },
               {
                   path: "/games",
                   element: <Games />,
+              },
+              {
+                  path: "/rank",
+                  element: <Rank />,
+              },
+              {
+                  path: "/outxxx",
+                  element: <LogOut />,
               }
               
           ]

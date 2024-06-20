@@ -1,7 +1,8 @@
 {
-  "Language": "English",
+  "Language": "Language",
   "French": "French",
   "English": "English",
   "Game": "Game",
-  "Rank": "Ranking"
+  "Rank": "Ranking",
+  "logout": "Logout"
 }
