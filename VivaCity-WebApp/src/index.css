@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    background-image: url('images/2023-01-16-13-30-19.png');
+    background-position: center;
+    background-size: cover;
+}
+
+html, body{
+    height: 100%;
+    margin : 0;
+    padding: 0;
+    overflow: hidden;
+   
+}
+
+.mb-3 {
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+
+} 
+
+.mb-4{
+    color: blue;
+    font-size: 1em;
+    font-weight: bold;
+}

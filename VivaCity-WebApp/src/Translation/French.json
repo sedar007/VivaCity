@@ -4,5 +4,9 @@
   "English": "Anglais",
   "Game": "Jeu",
   "Rank": "Classement",
-  "logout": "Se déconnecter"
+  "logout": "Se déconnecter",
+  "ChoiceUser": "Choix Utilisateur",
+  "Login": "Se Connecter",
+  "CreateUser": "Créer un Utilisateur",
+  "User": "Entrer votre nom d'utilisateur"
 }
