@@ -1,8 +1,11 @@
 namespace VivaCityWebApi.Common.DAO;
 
-public class UserDao
-{
-    public string Pseudo { get; set; } = null!;
+public class UserDao {
     public int Id { get; set; }
-    public string Name { get; set; } = null!;
+    public string Pseudo { get; set; } = null!;
+    
+    public IEnumerable<RessourceDao> Ressources {get; set;} = null!;
+    
+    public IEnumerable<VillageDao> Villages {get; set;} = null!;
+    public double Scores { get; set; } = 0!;
 }

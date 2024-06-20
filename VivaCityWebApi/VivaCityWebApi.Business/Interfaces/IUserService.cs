@@ -11,6 +11,6 @@ public interface IUserService
     Task<UsersDto?> GetUserById(int id);
     Task<UsersDto> CreateUserAsync(UserCreationRequest request);
     Task<IEnumerable<UsersDto>> SearchByName(string name);
-    Task<Users> UpdateUserAsync(Users user);
+    Task<UserDao> UpdateUserAsync(UserDao user);
     Task DeleteUserAsync(int pseudo);
 }

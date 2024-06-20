@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VivaCityWebApi.DataAccess;
@@ -11,9 +12,11 @@ using VivaCityWebApi.DataAccess;
 namespace VivaCityWebApi.DataAccess.Migrations
 {
     [DbContext(typeof(GameContext))]
-    partial class GameContextModelSnapshot : ModelSnapshot
+    [Migration("20240620124105_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,12 +51,12 @@ namespace VivaCityWebApi.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("VillageId")
+                    b.Property<int>("coutId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VillageId");
+                    b.HasIndex("coutId");
 
                     b.ToTable("Batiments");
                 });
@@ -68,7 +71,7 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.Property<int>("Nbr")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("RessourceId")
+                    b.Property<int>("RessourceId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -91,7 +94,17 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.Property<double>("Nbr")
                         .HasColumnType("double precision");
 
+                    b.Property<int>("RessourceItemId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UserDaoId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RessourceItemId");
+
+                    b.HasIndex("UserDaoId");
 
                     b.ToTable("Ressources");
                 });
@@ -142,12 +155,12 @@ namespace VivaCityWebApi.DataAccess.Migrations
                         .HasColumnType("integer")
                         .HasDefaultValueSql("nextval('village_id_seq')");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("UserDaoId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserDaoId");
 
                     b.ToTable("Villages");
                 });
@@ -156,16 +169,9 @@ namespace VivaCityWebApi.DataAccess.Migrations
                 {
                     b.HasOne("VivaCityWebApi.Common.DAO.CoutDao", "cout")
                         .WithMany()
-                        .HasForeignKey("Id")
+                        .HasForeignKey("coutId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("VivaCityWebApi.Common.DAO.VillageDao", "Village")
-                        .WithMany("batiments")
-                        .HasForeignKey("VillageId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Village");
 
                     b.Navigation("cout");
                 });
@@ -175,7 +181,8 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.HasOne("VivaCityWebApi.Common.DAO.RessourceDao", "Ressource")
                         .WithMany()
                         .HasForeignKey("RessourceId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Ressource");
                 });
@@ -184,27 +191,22 @@ namespace VivaCityWebApi.DataAccess.Migrations
                 {
                     b.HasOne("VivaCityWebApi.Common.DAO.RessourceItemDao", "RessourceItem")
                         .WithMany()
-                        .HasForeignKey("Id")
+                        .HasForeignKey("RessourceItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("VivaCityWebApi.Common.DAO.UserDao", null)
                         .WithMany("Ressources")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserDaoId");
 
                     b.Navigation("RessourceItem");
                 });
 
             modelBuilder.Entity("VivaCityWebApi.Common.DAO.VillageDao", b =>
                 {
-                    b.HasOne("VivaCityWebApi.Common.DAO.UserDao", "User")
+                    b.HasOne("VivaCityWebApi.Common.DAO.UserDao", null)
                         .WithMany("Villages")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("User");
+                        .HasForeignKey("UserDaoId");
                 });
 
             modelBuilder.Entity("VivaCityWebApi.Common.DAO.UserDao", b =>
@@ -212,11 +214,6 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.Navigation("Ressources");
 
                     b.Navigation("Villages");
-                });
-
-            modelBuilder.Entity("VivaCityWebApi.Common.DAO.VillageDao", b =>
-                {
-                    b.Navigation("batiments");
                 });
 #pragma warning restore 612, 618
         }

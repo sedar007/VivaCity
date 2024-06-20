@@ -76,7 +76,7 @@ public class UserService : IUserService
         }
     }
 
-    public Task<Users> UpdateUserAsync(Users user)
+    public Task<UserDao> UpdateUserAsync(UserDao user)
     {
         throw new NotImplementedException();
     }

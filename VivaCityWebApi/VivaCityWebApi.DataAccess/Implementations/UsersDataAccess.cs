@@ -21,7 +21,6 @@ public class UsersDataAccess:IUserDataAccess
     
     public async Task<UserDao> CreateUserAsync(UserCreationRequest request) {
         var newGame = _context.Users.Add(new UserDao() {
-            Name = request.Name,
             Pseudo = request.Pseudo,
            
         });
@@ -32,6 +31,6 @@ public class UsersDataAccess:IUserDataAccess
     }
     
     public async Task<IEnumerable<UserDao>> SearchByName(string name) {
-        return _context.Users.Where(x => x.Name.Contains(name));
+        return _context.Users.Where(x => x.Pseudo.Contains(name));
     }
 }
