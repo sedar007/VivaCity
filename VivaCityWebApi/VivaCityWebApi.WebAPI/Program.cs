@@ -41,6 +41,8 @@ public class Program {
 			builder.Services.AddTransient<IGameService, GameService>();
 			builder.Services.AddTransient<IUserDataAccess, UsersDataAccess>();
 			builder.Services.AddTransient<IUserService, UserService>();
+			builder.Services.AddTransient<IRessourceItemsDataAccess, RessourceItemsDataAccess>();
+			builder.Services.AddTransient<IRessourceItemService, RessourceItemService>();
 
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
