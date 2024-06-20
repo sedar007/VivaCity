@@ -17,10 +17,15 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 		}
 		
 		public async Task<CoutDao> Create(CoutCreationRequest request) {
+			
+			RessourceDao?  r = await _ressourceDataAccess.GetById(request.RessourceId);
+			if(r == null) 
+				throw new InvalidDataException("Erreur: ressourceId n'existe pas");
+			
 			var newCout = _context.Couts.Add(new CoutDao {
 				Nbr = request.Nbr,
 				RessourceId = request.RessourceId,
-				//Ressource = await _ressourceDataAccess.GetById(request.RessourceId),
+				Ressource = r,
 			});
 			
 			await _context.SaveChangesAsync();

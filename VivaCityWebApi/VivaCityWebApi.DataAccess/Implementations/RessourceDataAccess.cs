@@ -16,20 +16,20 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 		}
 		
 		
-		public Task<RessourceDao?> GetById(int id) {
+		public Task<RessourceDao?> GetById(int? id) {
 			return _context.Ressources.FirstOrDefaultAsync(x => x.Id == id);
 		}
 		
 		   
 	   public async Task<RessourceDao> Create(RessourceCreationRequest request) {
-			   RessourceItemDao?  r = await _ressourceItemsDataAccess.GetRessourceItemById(request.RessourceId);
+			   RessourceItemDao?  r = await _ressourceItemsDataAccess.GetRessourceItemById(request.RessourceItemId);
 			   if(r == null) 
 				   throw new InvalidDataException("Erreur: ressourceId n'existe pas");
 			   
 			   var newRessource = _context.Ressources.Add(new RessourceDao {
 				   Nbr = request.Nbr,
 				   Max = request.Max,
-				   RessourceItemId = request.RessourceId,
+				   RessourceItemId = request.RessourceItemId,
 				   RessourceItem = r,
 			   });
 			   

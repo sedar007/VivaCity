@@ -7,7 +7,7 @@ namespace VivaCityWebApi.Common.DTO {
 				Id = coutDao.Id,
 				Nbr = coutDao.Nbr,
 				RessourceId = coutDao.RessourceId,
-				Ressource = coutDao.Ressource.ToDto(),
+				Ressource = coutDao.Ressource?.ToDto(),
 			};
 		}
 	}
