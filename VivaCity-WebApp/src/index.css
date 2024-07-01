@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body{
     background-image: url('images/2023-01-16-13-30-19.png');
     background-position: center;
@@ -28,3 +29,4 @@ html, body{
     font-size: 1em;
     font-weight: bold;
 }
+
