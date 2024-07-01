@@ -1,0 +1,9 @@
+#foot-name{
+    background-color:rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

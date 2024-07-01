@@ -1,4 +1,5 @@
 using VivaCityWebApi.Business.Implementations;
+using VivaCityWebApi.Business.Implementations;
 using VivaCityWebApi.Business.Interfaces;
 using VivaCityWebApi.Common;
 using VivaCityWebApi.DataAccess;
@@ -7,6 +8,7 @@ using VivaCityWebApi.DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
+using VivaCityWebApi.Common.Interfaces;
 
 namespace VivaCityWebApi.WebAPI;
 
@@ -37,6 +39,18 @@ public class Program {
 			// Add services to the container.
 			builder.Services.AddTransient<IGamesDataAccess, GamesDataAccess>();
 			builder.Services.AddTransient<IGameService, GameService>();
+			builder.Services.AddTransient<IUserDataAccess, UsersDataAccess>();
+			builder.Services.AddTransient<IUserService, UserService>();
+			builder.Services.AddTransient<IRessourceItemsDataAccess, RessourceItemsDataAccess>();
+			builder.Services.AddTransient<IRessourceItemService, RessourceItemService>();
+			builder.Services.AddTransient<IRessourceDataAccess, RessourceDataAccess>();
+			builder.Services.AddTransient<IRessourceService, RessourceService>();
+			builder.Services.AddTransient<ICoutDataAccess, CoutDataAccess>();
+			builder.Services.AddTransient<ICoutService, CoutService>();
+			builder.Services.AddTransient<IBatimentDataAccess, BatimentDataAccess>();
+			builder.Services.AddTransient<IBatimentService, BatimentService>();
+			builder.Services.AddTransient<IVillageDataAccess, VillageDataAccess>();
+			builder.Services.AddTransient<IVillageService, VillageService>();
 
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

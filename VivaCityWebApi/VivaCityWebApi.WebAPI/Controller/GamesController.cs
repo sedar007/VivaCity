@@ -12,7 +12,7 @@ namespace VivaCityWebApi.WebAPI.Controller {
 			_gameService = gameService;
 		}
 
-		[HttpGet]
+		/*[HttpGet]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		public async Task<ActionResult<IEnumerable<GameDto>>> GetGames() {
 			return Ok(await _gameService.GetGames());
@@ -69,6 +69,6 @@ namespace VivaCityWebApi.WebAPI.Controller {
 			} catch (InvalidDataException) {
 				return NotFound();
 			}
-		}
+		}*/
 	}
 }
