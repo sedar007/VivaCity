@@ -59,5 +59,17 @@ public class UsersController : ControllerBase
         }
     }
     
+    [HttpPost("createVillage")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> AddVillage(UserAddVillageRequest userAddVillageRequest) {
+        try {
+            await _userService.AddVillage(userAddVillageRequest);
+            return Ok();
+        } catch (InvalidDataException ex) {
+            return BadRequest(ex.Message);
+        }
+    }
+    
     
 }

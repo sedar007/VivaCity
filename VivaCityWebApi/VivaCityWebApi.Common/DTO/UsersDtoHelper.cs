@@ -8,6 +8,7 @@ public static class UsersDtoHelper
         return new UsersDto {
             Id = userDao.Id,
             Pseudo = userDao.Pseudo,
+            Villages = userDao.Villages?.Select(v => v.ToDto()).ToList(),
         };
     }
 }

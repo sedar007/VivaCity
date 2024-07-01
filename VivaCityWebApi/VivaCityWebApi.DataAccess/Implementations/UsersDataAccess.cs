@@ -18,10 +18,13 @@ public class UsersDataAccess:IUserDataAccess
     }
 
     public Task<UserDao?> GetUserById(int id) {
-        return _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+        return _context.Users
+            .Include(x => x.Villages).ThenInclude((x) => x.Batiments)
+            .Include(x => x.Villages).ThenInclude((x) => x.Ressources)
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
     public Task<UserDao?> SearchByName(string pseudo) {
-        return _context.Users.FirstOrDefaultAsync(x => x.Pseudo.Equals(pseudo));
+        return _context.Users.Include(x => x.Villages).FirstOrDefaultAsync(x => x.Pseudo.Equals(pseudo));
     }
     
     public async Task<UserDao> CreateUserAsync(UserCreationRequest request) {
@@ -41,6 +44,22 @@ public class UsersDataAccess:IUserDataAccess
         return await GetUserById(newGame.Entity.Id) ?? throw new NullReferenceException("Erreur lors de la creation du jeu");
     }
     
+    
+    public async Task AddVillage(UserAddVillageRequest request) {
+        
+        VillageDao v = await _villageDataAccess.Create(new VillageCreationRequest {
+            Name = request.VillageName,
+        });
+        
+        var user = await GetUserById(request.IdUser);
+        
+        if(user == null)
+            throw new NullReferenceException("Utilisateur non trouvé");
+
+        user.Villages.Add(v);
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
+    }
     
     
 }

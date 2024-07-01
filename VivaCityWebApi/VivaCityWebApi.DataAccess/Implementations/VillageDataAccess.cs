@@ -53,8 +53,7 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 			//await _batimentDataAccess.AddVillage(newVillage.Entity, b1);
 			await _context.SaveChangesAsync();
 			return await GetVillageById(newVillage.Entity.Id) ?? throw new NullReferenceException("Erreur lors de la creation du village");
-		
-		
+			
 		}
 
 		public Task SaveChanges() {

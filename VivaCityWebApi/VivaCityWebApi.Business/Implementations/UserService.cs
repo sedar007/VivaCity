@@ -68,6 +68,7 @@ public class UserService : IUserService
             throw;
         }
     }
+    
 
     public Task<UserDao> UpdateUserAsync(UserDao user)
     {
@@ -88,4 +89,25 @@ public class UserService : IUserService
             throw;
         }
     }
+    
+    public async Task AddVillage(UserAddVillageRequest request)
+    {
+        try {
+            if (request == null) 
+                throw new InvalidDataException("Erreur inconnue");
+            if(request.IdUser <= 0)
+                throw new InvalidDataException("IdUser peut pas être inférieur à 0");
+            
+            if(request.VillageName == null)
+                throw new InvalidDataException("VillageName ne peut pas être null");
+
+
+            await userDataAccess.AddVillage(request);
+        } catch (Exception e) {
+            _logger.LogError(e, e.Message);
+            throw;
+        }
+    }
+
+    
 }
