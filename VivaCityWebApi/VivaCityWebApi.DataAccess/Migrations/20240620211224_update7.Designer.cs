@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VivaCityWebApi.DataAccess;
@@ -11,9 +12,11 @@ using VivaCityWebApi.DataAccess;
 namespace VivaCityWebApi.DataAccess.Migrations
 {
     [DbContext(typeof(GameContext))]
-    partial class GameContextModelSnapshot : ModelSnapshot
+    [Migration("20240620211224_update7")]
+    partial class update7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,7 +102,7 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.Property<double>("Nbr")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("RessourceItemId")
+                    b.Property<int?>("RessourceItemId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("VillageId")
@@ -160,10 +163,6 @@ namespace VivaCityWebApi.DataAccess.Migrations
                         .HasColumnType("integer")
                         .HasDefaultValueSql("nextval('village_id_seq')");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
@@ -206,8 +205,7 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.HasOne("VivaCityWebApi.Common.DAO.RessourceItemDao", "RessourceItem")
                         .WithMany()
                         .HasForeignKey("RessourceItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("VivaCityWebApi.Common.DAO.VillageDao", null)
                         .WithMany("Ressources")

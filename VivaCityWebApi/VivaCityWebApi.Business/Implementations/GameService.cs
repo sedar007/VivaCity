@@ -1,4 +1,4 @@
-﻿using VivaCityWebApi.Business.Interfaces;
+using VivaCityWebApi.Business.Interfaces;
 using VivaCityWebApi.Common.DTO;
 using VivaCityWebApi.Common.Requests;
 using VivaCityWebApi.DataAccess.Interfaces;
@@ -13,7 +13,7 @@ namespace VivaCityWebApi.Business.Implementations {
 			_gameDataAccess = gameDataAccess;
 		}
 
-		public async Task<IEnumerable<GameDto>> GetGames() {
+		/*public async Task<IEnumerable<GameDto>> GetGames() {
 			try {
 				return (await _gameDataAccess.GetGames())
 					.Select(gameDao => gameDao.ToDto());
@@ -114,6 +114,6 @@ namespace VivaCityWebApi.Business.Implementations {
 				_logger.LogError(e, e.Message);
 				throw;
 			}
-		}
+		}*/
 	}
 }

@@ -10,7 +10,7 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 			this._context = context;
 		}
 
-		public async Task<IEnumerable<GameDao>> GetGames() {
+		/*public async Task<IEnumerable<GameDao>> GetGames() {
 			return _context.Games;
 		}
 
@@ -42,6 +42,6 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 			var game = await GetGameById(id);
 			_context.Games.Remove(game);
 			await _context.SaveChangesAsync();
-		}
+		}*/
 	}
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VivaCityWebApi.DataAccess;
@@ -11,9 +12,11 @@ using VivaCityWebApi.DataAccess;
 namespace VivaCityWebApi.DataAccess.Migrations
 {
     [DbContext(typeof(GameContext))]
-    partial class GameContextModelSnapshot : ModelSnapshot
+    [Migration("20240620155214_update3")]
+    partial class update3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,9 +53,6 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
 
                     b.Property<int?>("VillageId")
                         .HasColumnType("integer");
@@ -99,17 +99,17 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.Property<double>("Nbr")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("RessourceItemId")
+                    b.Property<int?>("RessourceItemId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("VillageId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RessourceItemId");
 
-                    b.HasIndex("VillageId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Ressources");
                 });
@@ -160,10 +160,6 @@ namespace VivaCityWebApi.DataAccess.Migrations
                         .HasColumnType("integer")
                         .HasDefaultValueSql("nextval('village_id_seq')");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
@@ -182,7 +178,7 @@ namespace VivaCityWebApi.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("VivaCityWebApi.Common.DAO.VillageDao", "Village")
-                        .WithMany("Batiments")
+                        .WithMany("batiments")
                         .HasForeignKey("VillageId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -206,12 +202,11 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.HasOne("VivaCityWebApi.Common.DAO.RessourceItemDao", "RessourceItem")
                         .WithMany()
                         .HasForeignKey("RessourceItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("VivaCityWebApi.Common.DAO.VillageDao", null)
+                    b.HasOne("VivaCityWebApi.Common.DAO.UserDao", null)
                         .WithMany("Ressources")
-                        .HasForeignKey("VillageId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("RessourceItem");
@@ -229,14 +224,14 @@ namespace VivaCityWebApi.DataAccess.Migrations
 
             modelBuilder.Entity("VivaCityWebApi.Common.DAO.UserDao", b =>
                 {
+                    b.Navigation("Ressources");
+
                     b.Navigation("Villages");
                 });
 
             modelBuilder.Entity("VivaCityWebApi.Common.DAO.VillageDao", b =>
                 {
-                    b.Navigation("Batiments");
-
-                    b.Navigation("Ressources");
+                    b.Navigation("batiments");
                 });
 #pragma warning restore 612, 618
         }
