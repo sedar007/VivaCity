@@ -13,7 +13,9 @@ using VivaCityWebApi.Common.Interfaces;
 namespace VivaCityWebApi.WebAPI;
 
 public class Program {
+	private const string CORS_POLICY = "CORS_POLICY";
 	public static void Main(string[] args) {
+		
 
 		var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 		logger.Info("Starting Application ...");
@@ -37,8 +39,6 @@ public class Program {
 			builder.Services.AddTransient<GameContext>();
 
 			// Add services to the container.
-			builder.Services.AddTransient<IGamesDataAccess, GamesDataAccess>();
-			builder.Services.AddTransient<IGameService, GameService>();
 			builder.Services.AddTransient<IUserDataAccess, UsersDataAccess>();
 			builder.Services.AddTransient<IUserService, UserService>();
 			builder.Services.AddTransient<IRessourceItemsDataAccess, RessourceItemsDataAccess>();
@@ -56,10 +56,21 @@ public class Program {
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
+			
+			builder.Services.AddCors(options => {
+				options.AddPolicy(name: CORS_POLICY,
+					policy => {
+						policy.AllowAnyOrigin()
+							.AllowAnyMethod()
+							.AllowAnyHeader();
+					});
+			});
 
 			// NLog: Setup NLog for Dependency injection
 			builder.Logging.ClearProviders();
 			builder.Host.UseNLog();
+			
+			
 
 			var app = builder.Build();
 
@@ -77,6 +88,7 @@ public class Program {
 			}
 
 			app.UseHttpsRedirection();
+			app.UseCors(CORS_POLICY);
 
 			app.UseAuthorization();
 
