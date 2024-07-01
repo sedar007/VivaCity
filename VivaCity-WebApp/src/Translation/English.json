@@ -4,5 +4,9 @@
   "English": "English",
   "Game": "Game",
   "Rank": "Ranking",
-  "logout": "Logout"
+  "logout": "Logout",
+  "ChoiceUser" : "Choice User",
+  "Login" : "Login",
+  "CreateUser" : "Create User",
+  "User" : "Please Enter Your Username"
 }
