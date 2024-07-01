@@ -9,6 +9,8 @@ public interface IUserService
 {
     Task<IEnumerable<UsersDto>> GetUsersAsync();
     Task<UsersDto?> GetUserById(int id);
+    Task<IEnumerable<VillageDto>> GetUserVillageByIdUser(int id);
+   
     Task<UsersDto> CreateUserAsync(UserCreationRequest request);
     Task AddVillage(UserAddVillageRequest request);
     

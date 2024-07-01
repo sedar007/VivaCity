@@ -15,7 +15,7 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 		}
 		
 		public Task<VillageDao?> GetVillageById(int? id) {
-			return _context.Villages.FirstOrDefaultAsync(x => x.Id == id);
+			return _context.Villages.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
 		}
 		
 		public async Task<VillageDao> Create(VillageCreationRequest request) {

@@ -71,5 +71,16 @@ public class UsersController : ControllerBase
         }
     }
     
+    [HttpGet("getVillges/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<VillageDto>>> GetUserVillageByIdUser(int id)
+    {
+        return Ok(await _userService.GetUserVillageByIdUser(id));
+    }
+    
+    
+    
+    
     
 }

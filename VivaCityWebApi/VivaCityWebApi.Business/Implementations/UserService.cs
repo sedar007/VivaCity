@@ -39,6 +39,17 @@ public class UserService : IUserService
         }
     }
     
+    public async Task<IEnumerable<VillageDto>> GetUserVillageByIdUser(int id)
+    {
+        try {
+            return (await userDataAccess.GetUserVillageByIdUser(id))
+                .Select(villageDao => villageDao.ToDto());
+        } catch (Exception e) {
+            _logger.LogError(e, e.Message);
+            throw;
+        }
+    }
+    
     private void CheckPseudo(string pseudo) {
         if (string.IsNullOrWhiteSpace(pseudo)) {
             throw new InvalidDataException("Erreur: Pseudo vide");

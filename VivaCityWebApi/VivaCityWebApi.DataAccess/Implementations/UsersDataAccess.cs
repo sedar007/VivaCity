@@ -46,7 +46,6 @@ public class UsersDataAccess:IUserDataAccess
     
     
     public async Task AddVillage(UserAddVillageRequest request) {
-        
         VillageDao v = await _villageDataAccess.Create(new VillageCreationRequest {
             Name = request.VillageName,
         });
@@ -59,6 +58,16 @@ public class UsersDataAccess:IUserDataAccess
         user.Villages.Add(v);
         _context.Users.Update(user);
         await _context.SaveChangesAsync();
+    }
+    
+    
+    public async Task<IEnumerable<VillageDao?>> GetUserVillageByIdUser(int id) {
+        var user = await GetUserById(id);
+        if(user == null)
+            throw new NullReferenceException("Utilisateur non trouvé");
+        
+        return user.Villages;
+        
     }
     
     
