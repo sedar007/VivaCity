@@ -8,7 +8,6 @@ namespace VivaCityWebApi.Common.DTO {
 				RessourceItem = ressourceDao.RessourceItem?.ToDto(),
 				Nbr = ressourceDao.Nbr,
 				Max = ressourceDao.Max,
-				RessourceItemId = ressourceDao.RessourceItemId,
 				VillageId = ressourceDao.VillageId,
 			};
 		}

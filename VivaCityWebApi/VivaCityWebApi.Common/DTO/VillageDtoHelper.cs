@@ -6,8 +6,6 @@ namespace VivaCityWebApi.Common.DTO {
 				Id = villageDao.Id,
 				Batiments = villageDao.Batiments?.Select(b => b.ToDto()),
 				Ressources = villageDao.Ressources?.Select(r => r.ToDto()),
-				User = villageDao.User?.ToDto(),
-				UserId = villageDao.UserId,
 			};
 		}
 	}

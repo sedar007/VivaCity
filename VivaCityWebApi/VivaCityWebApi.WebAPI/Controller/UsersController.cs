@@ -42,7 +42,7 @@ public class UsersController : ControllerBase
     public async Task<ActionResult> CreateUserAsync(UserCreationRequest userCreationRequest) {
         try {
             var user = await _userService.CreateUserAsync(userCreationRequest);
-            return Created($"/api/Users/{user.Name}", user);
+            return Created($"/api/Users/{user.Pseudo}", user);
         } catch (InvalidDataException ex) {
             return BadRequest(ex.Message);
         }

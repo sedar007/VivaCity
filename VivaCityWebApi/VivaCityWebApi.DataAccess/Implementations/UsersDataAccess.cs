@@ -8,8 +8,10 @@ namespace VivaCityWebApi.DataAccess.Implementations;
 public class UsersDataAccess:IUserDataAccess
 {
     private readonly GameContext _context;
+    private VillageDataAccess _villageDataAccess;
     public UsersDataAccess(GameContext context) {
         this._context = context;
+        this._villageDataAccess =  new VillageDataAccess(context);
     }
     public async Task<IEnumerable<UserDao>> GetUsersAsync() {
         return _context.Users;
@@ -20,9 +22,15 @@ public class UsersDataAccess:IUserDataAccess
     }
     
     public async Task<UserDao> CreateUserAsync(UserCreationRequest request) {
+        
+        VillageDao v = await _villageDataAccess.Create(new VillageCreationRequest {
+            Name = "Village1",
+        });
+  
+  
         var newGame = _context.Users.Add(new UserDao() {
             Pseudo = request.Pseudo,
-           
+           Villages = new List<VillageDao> { v},
         });
 
         await _context.SaveChangesAsync();

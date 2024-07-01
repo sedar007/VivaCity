@@ -29,13 +29,13 @@ namespace VivaCityWebApi.Business.Implementations {
 			try {
 				if (request == null)
 					throw new InvalidDataException("Erreur inconnue");
-				if(request.RessourceItemId == null)
-					throw new InvalidDataException("Erreur: ressourceId ne peut pas etre null");
-				if(request.RessourceItemId <= 0)
-					throw new InvalidDataException("Erreur: ressourceId ne peut pas etre <= 0");
+				if(request.Nbr <= 0)
+					throw new InvalidDataException("Erreur: nbr ne peut pas etre <= 0");
+				
 				if(request.Max <= 0)
 					throw new InvalidDataException("Erreur: max ne peut pas etre <= 0");
-				CheckNbr(request.Nbr);
+				if(request.Nbr > request.Max)
+					throw new InvalidDataException("Erreur: nbr > max");
 				
 				return (await _ressourceDataAccess.Create(request)).ToDto();
 			} catch (Exception e) {

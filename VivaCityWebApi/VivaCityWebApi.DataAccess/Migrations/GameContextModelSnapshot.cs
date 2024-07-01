@@ -99,7 +99,7 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.Property<double>("Nbr")
                         .HasColumnType("double precision");
 
-                    b.Property<int?>("RessourceItemId")
+                    b.Property<int>("RessourceItemId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("VillageId")
@@ -160,6 +160,10 @@ namespace VivaCityWebApi.DataAccess.Migrations
                         .HasColumnType("integer")
                         .HasDefaultValueSql("nextval('village_id_seq')");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
@@ -202,7 +206,8 @@ namespace VivaCityWebApi.DataAccess.Migrations
                     b.HasOne("VivaCityWebApi.Common.DAO.RessourceItemDao", "RessourceItem")
                         .WithMany()
                         .HasForeignKey("RessourceItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("VivaCityWebApi.Common.DAO.VillageDao", null)
                         .WithMany("Ressources")

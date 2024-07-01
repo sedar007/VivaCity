@@ -9,10 +9,12 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 	public class RessourceDataAccess : IRessourceDataAccess {
 		private readonly GameContext _context;
 		private RessourceItemsDataAccess _ressourceItemsDataAccess;
+		//private VillageDataAccess _villageDataAccess;
 		private readonly ILogger<RessourceDataAccess> _logger;
 		public RessourceDataAccess(GameContext context) {
 			this._context = context;
 			this._ressourceItemsDataAccess =  new RessourceItemsDataAccess(context);
+			//this._villageDataAccess = new VillageDataAccess(context);
 		}
 		
 		
@@ -22,16 +24,21 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 		
 		   
 	   public async Task<RessourceDao> Create(RessourceCreationRequest request) {
-			   RessourceItemDao?  r = await _ressourceItemsDataAccess.GetRessourceItemById(request.RessourceItemId);
-			   if(r == null) 
-				   throw new InvalidDataException("Erreur: ressourceId n'existe pas");
-			   
-			   var newRessource = _context.Ressources.Add(new RessourceDao {
+		   if(request == null)
+			   throw new InvalidDataException("Erreur inconnue");
+		   if(request.RessourceItemId <= 0)
+			   throw new InvalidDataException("Erreur: ressourceItemId ne peut pas etre <= 0");
+
+
+		   RessourceItemDao? r = await _ressourceItemsDataAccess.GetRessourceItemById(request.RessourceItemId);
+		   if(r == null)
+			   throw new InvalidDataException("Erreur: ressourceItem inexistant");
+			var newRessource = _context.Ressources.Add(new RessourceDao {
 				   Nbr = request.Nbr,
 				   Max = request.Max,
-				   RessourceItemId = request.RessourceItemId,
 				   RessourceItem = r,
-			   });
+				   VillageId = request.VillageId,
+			});
 			   
 			   await _context.SaveChangesAsync();
 			   return await GetById(newRessource.Entity.Id) ??

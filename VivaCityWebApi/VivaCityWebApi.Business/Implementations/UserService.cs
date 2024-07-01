@@ -59,14 +59,7 @@ public class UserService : IUserService
             if (request == null) {
                 throw new InvalidDataException("Erreur inconnue");
             }
-
-            // TODO: check name duplications
-
-            if (string.IsNullOrWhiteSpace(request.Name)) {
-                throw new InvalidDataException("Erreur: Nom vide");
-            }
-
-            CheckName(request.Name);
+            
             CheckPseudo(request.Pseudo);
 
             return (await userDataAccess.CreateUserAsync(request)).ToDto();

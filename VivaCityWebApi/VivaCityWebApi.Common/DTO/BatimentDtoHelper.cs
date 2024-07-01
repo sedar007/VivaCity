@@ -9,7 +9,7 @@ namespace VivaCityWebApi.Common.DTO {
 				Level = batimentDao.Level,
 				Type = batimentDao.Type,
 				Cout = batimentDao.Cout?.ToDto(),
-				Village = batimentDao.Village?.ToDto(),
+				//Village = batimentDao.Village?.ToDto(),
 				VillageId = batimentDao.VillageId,
 				CoutId = batimentDao.CoutId,
 			};

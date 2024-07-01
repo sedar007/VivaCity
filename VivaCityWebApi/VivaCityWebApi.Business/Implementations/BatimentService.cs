@@ -41,6 +41,34 @@ namespace VivaCityWebApi.Business.Implementations {
 			}
 		}
 		
+		public async Task<BatimentDto> Create(BatimentCreationRequest request) {
+			try {
+				if (request == null)
+					throw new InvalidDataException("Erreur inconnue");
+
+				if (string.IsNullOrWhiteSpace(request.Name))
+					throw new InvalidDataException("Erreur: Nom vide");
+				
+				if (request.Type < 0)
+					throw new InvalidDataException("Erreur: Type invalide");
+				if (request.nbCout < 0)
+					throw new InvalidDataException("Erreur: Nombre de cout invalide");
+				
+				
+		/*public int? VillageId { get; set; }
+		public int? CoutId { get; set; }
+		
+		public VillageDao Village { get; set; } = null!;
+		
+		public int RessourceId { get; set; } */
+
+				return (await _batimentDataAccess.Create(request)).ToDto();
+			} catch (Exception e) {
+				_logger.LogError(e, e.Message);
+				throw;
+			}
+		}
+		
 		
 	}
 }

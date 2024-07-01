@@ -44,5 +44,18 @@ namespace VivaCityWebApi.WebAPI.Controller {
 			}
 			return Ok(batiment);
 		}
+		
+		
+		[HttpPost]
+		[ProducesResponseType(StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public async Task<ActionResult> Create(BatimentCreationRequest batimentRequest) {
+			try {
+				var batiment = await _batimentService.Create(batimentRequest);
+				return Created($"/api/Batiments/{batiment.Id}", batiment);
+			} catch (InvalidDataException ex) {
+				return BadRequest(ex.Message);
+			}
+		}
 	}
 }
