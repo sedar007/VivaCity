@@ -10,7 +10,7 @@ public interface IUserService
     Task<IEnumerable<UsersDto>> GetUsersAsync();
     Task<UsersDto?> GetUserById(int id);
     Task<UsersDto> CreateUserAsync(UserCreationRequest request);
-    Task<IEnumerable<UsersDto>> SearchByName(string name);
+    Task<UsersDto> SearchByName(string name);
     Task<UserDao> UpdateUserAsync(UserDao user);
     Task DeleteUserAsync(int pseudo);
 }

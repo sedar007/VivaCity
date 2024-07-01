@@ -79,11 +79,10 @@ public class UserService : IUserService
         throw new NotImplementedException();
     }
 
-    public async Task<IEnumerable<UsersDto>> SearchByName(string name)
+    public async Task<UsersDto> SearchByName(string name)
     {
         try {
-            return (await userDataAccess.SearchByName(name))
-                .Select(gameDao => gameDao.ToDto());
+            return  (await userDataAccess.SearchByName(name))?.ToDto();
         } catch (Exception e) {
             _logger.LogError(e, e.Message);
             throw;

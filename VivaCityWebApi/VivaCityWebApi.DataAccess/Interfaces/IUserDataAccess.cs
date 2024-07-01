@@ -8,5 +8,5 @@ public interface IUserDataAccess
     Task<IEnumerable<UserDao>> GetUsersAsync();
     Task<UserDao?> GetUserById(int id);
     Task<UserDao> CreateUserAsync(UserCreationRequest request);
-    Task<IEnumerable<UserDao>> SearchByName(string name);
+    Task<UserDao?> SearchByName(string pseudo);
 }
