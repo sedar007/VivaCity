@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import village1 from "../../assets/village1.jpg";
 import wood from "../../assets/wood.png";
 import './index.css';
@@ -9,12 +9,15 @@ import Ressource from "./ressources.jsx";
 
 
 export default function Village({ village}) {
+
+
        const [isCreateMainVisible, setCreateMainVisible] = useState(false);
 
     // Fonction pour changer l'état de la visibilité
     const toggleCreateMain = () => {
         setCreateMainVisible(!isCreateMainVisible);
     }
+
     
     return (
         <div className="village">
@@ -52,7 +55,7 @@ export default function Village({ village}) {
                     <h2 className="h2anim" data-text="VivaCity...">VivaCity...</h2>
                 </div>
 
-                {!isCreateMainVisible && <span className="create-village">
+                  {!isCreateMainVisible && <span className="create-village">
                     <h1>Voulez vous Créer un nouveau village ?</h1>
                     <button onClick={toggleCreateMain} className="create-btn">Cest par ici</button>
                 </span>}
