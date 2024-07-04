@@ -2,6 +2,7 @@
 	public class BatimentDto {
 		public int Id { get; set; } 
 		public string Name { get; set; } = null!;
+		public string Picture { get; set; } = null!;
 		public int Level { get; set; }
 		public int Type { get; set; }
 		public CoutDto Cout { get; set; } = null!;

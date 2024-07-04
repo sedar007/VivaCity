@@ -4,6 +4,7 @@ public class BatimentDao
 {
     public int Id { get; set; } 
     public string Name { get; set; } = null!;
+    public string Picture { get; set; } = null!;
     public int Level { get; set; }
     public int Type { get; set; }
     public CoutDao Cout { get; set; } = null!;

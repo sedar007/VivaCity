@@ -9,6 +9,8 @@ public interface IUserDataAccess
     Task<IEnumerable<UserDao>> GetUsersAsync();
     Task<UserDao?> GetUserById(int id);
     Task<IEnumerable<VillageDao?>> GetUserVillageByIdUser(int id);
+    
+    Task UpdateBatiment(UserUpdateBatimentRequest request);
 
     
     

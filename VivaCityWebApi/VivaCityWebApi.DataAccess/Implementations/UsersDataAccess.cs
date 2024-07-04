@@ -63,6 +63,71 @@ public class UsersDataAccess:IUserDataAccess
         _context.Users.Update(user);
         await _context.SaveChangesAsync();
     }
+
+    public async Task UpdateBatiment(UserUpdateBatimentRequest request) {
+        UserDao user = await GetUserById(request.IdUser);
+        if(user == null)
+            throw new NullReferenceException("Utilisateur non trouvé");
+        UpgradeRessource(user); // Update ressource
+
+        VillageDao village = user.Villages.FirstOrDefault(v => v.Id == request.IdVillage);
+        if(village == null)
+            throw new NullReferenceException("Village non trouvé");
+        
+        var batiment = village.Batiments.FirstOrDefault(b => b.Id == request.IdBatiment);
+       if(batiment == null)
+            throw new NullReferenceException("Batiment non trouvé");
+       
+       UpgradeBatiment(village, batiment);
+       
+       
+       _context.Users.Update(user);
+       _context.SaveChanges();
+ 
+    }
+    
+    
+    private void UpgradeBatiment(VillageDao village, BatimentDao batiment) {
+        foreach (RessourceDao ressource in village.Ressources)
+            if (ressource.RessourceItem == batiment.Cout.Ressource.RessourceItem && batiment.Cout.Nbr <= ressource.Nbr)
+            {
+                ressource.Nbr -= batiment.Cout.Nbr;
+                batiment.Level++;
+                batiment.Cout.Nbr += Convert.ToInt32(Math.Round(batiment.Cout.Nbr * batiment.Level * 0.25));
+                return;
+            }
+    }
+
+
+    private void UpgradeRessource(UserDao user) {
+        if(user == null)
+            throw new NullReferenceException("Utilisateur non trouvé");
+
+        foreach (VillageDao village in user.Villages) {
+            foreach (BatimentDao batiment in village.Batiments)
+                UpdateB(batiment, village);
+            village.UpdatedAt = DateTime.UtcNow;
+        }
+
+        _context.Users.Update(user);
+        _context.SaveChanges();
+
+    }
+
+
+    private void UpdateB(BatimentDao batiment, VillageDao village) {
+        foreach ( RessourceDao ressourceDao in village.Ressources)
+            if (ressourceDao.RessourceItem == batiment.Cout.Ressource.RessourceItem) {
+                ressourceDao.Nbr +=
+                    Convert.ToInt32(Math.Round((DateTime.UtcNow - village.UpdatedAt).TotalSeconds * batiment.Level *
+                                               0.95));
+                return;
+            }
+
+
+    }
+    
+  
     
     
     public async Task<IEnumerable<VillageDao?>> GetUserVillageByIdUser(int id) {
@@ -73,6 +138,5 @@ public class UsersDataAccess:IUserDataAccess
         return user.Villages;
         
     }
-    
-    
+
 }

@@ -79,6 +79,18 @@ public class UsersController : ControllerBase
         return Ok(await _userService.GetUserVillageByIdUser(id));
     }
     
+    [HttpPost("updateBatiments")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> UpdateBatiment(UserUpdateBatimentRequest request) {
+        try {
+            await _userService.UpdateBatiment(request);
+            return Ok();
+        } catch (InvalidDataException ex) {
+            return BadRequest(ex.Message);
+        }
+    }
+    
     
     
     

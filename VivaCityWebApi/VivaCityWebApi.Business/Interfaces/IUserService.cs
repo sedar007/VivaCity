@@ -18,5 +18,7 @@ public interface IUserService
     Task<UserDao> UpdateUserAsync(UserDao user);
     Task DeleteUserAsync(int pseudo);
     
+    Task UpdateBatiment(UserUpdateBatimentRequest request);
+    
     
 }
