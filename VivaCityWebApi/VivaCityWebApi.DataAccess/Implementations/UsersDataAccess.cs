@@ -20,6 +20,9 @@ public class UsersDataAccess:IUserDataAccess
     public Task<UserDao?> GetUserById(int id) {
         return _context.Users.FirstOrDefaultAsync(x => x.Id == id);
     }
+    public Task<UserDao?> SearchByName(string pseudo) {
+        return _context.Users.FirstOrDefaultAsync(x => x.Pseudo.Equals(pseudo));
+    }
     
     public async Task<UserDao> CreateUserAsync(UserCreationRequest request) {
         
@@ -38,7 +41,6 @@ public class UsersDataAccess:IUserDataAccess
         return await GetUserById(newGame.Entity.Id) ?? throw new NullReferenceException("Erreur lors de la creation du jeu");
     }
     
-    public async Task<IEnumerable<UserDao>> SearchByName(string name) {
-        return _context.Users.Where(x => x.Pseudo.Contains(name));
-    }
+    
+    
 }

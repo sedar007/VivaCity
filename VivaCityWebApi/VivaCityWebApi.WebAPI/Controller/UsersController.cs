@@ -21,7 +21,7 @@ public class UsersController : ControllerBase
     
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<GameDto>>> GetGames() {
+    public async Task<ActionResult<IEnumerable<UsersDto>>> GetUsers() {
         return Ok(await _userService.GetUsersAsync());
     }
     
@@ -29,11 +29,22 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<UsersDto?>> GetUserById(int id) {
-        var game = await _userService.GetUserById(id);
-        if (game == null) {
+        var user = await _userService.GetUserById(id);
+        if (user == null) {
             return NotFound();
         }
-        return Ok(game);
+        return Ok(user);
+    }
+    
+    [HttpGet("searchByName/{pseudo}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<UsersDto>> SearchByName(string pseudo) {
+        var user = await _userService.SearchByName(pseudo);
+        if (user == null) {
+            return NotFound();
+        }
+        return Ok(user);
     }
     
     [HttpPost]
@@ -48,9 +59,5 @@ public class UsersController : ControllerBase
         }
     }
     
-    [HttpGet("searchByName/{name}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<GameDto>>> SearchByName(string name) {
-        return Ok(await _userService.SearchByName(name));
-    }
+    
 }
