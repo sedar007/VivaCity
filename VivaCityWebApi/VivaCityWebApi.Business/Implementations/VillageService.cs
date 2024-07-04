@@ -35,6 +35,7 @@ namespace VivaCityWebApi.Business.Implementations {
 				if(request.Name.Length < 3)
 					throw new InvalidDataException("Erreur: Nom du village trop court!");
 				
+				
 				return (await _villageDataAccess.Create(request)).ToDto();
 			} catch (Exception e) {
 				_logger.LogError(e, e.Message);

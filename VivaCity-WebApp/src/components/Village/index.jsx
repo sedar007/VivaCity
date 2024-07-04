@@ -2,20 +2,22 @@
 import React from 'react';
 import village1 from "../../assets/village1.jpg";
 import ressource1 from "../../assets/bois.png";
+import wood from "../../assets/wood.png";
 import './index.css'
 import './animation.css'
 import Batiment from "../Batiment/index.jsx";
 import CreateVillage from "./createVillage.jsx";
 
 // eslint-disable-next-line react/prop-types
-export default function Village({ name, level }) {
+export default function Village({ village}) {
+
     return (
         <div className="village">
             <div className="village-container">
                 <div className="village-info">
 
-                    <h1>{name}</h1>
-                    <span>Level:{level}</span>
+                    <h1>{village.name}</h1>
+                    <span>Level:{village.level}</span>
 
                 </div>
                 <div className="vil-bat">
@@ -27,24 +29,15 @@ export default function Village({ name, level }) {
 
 
                         <div className="res">
-                    <span className="ressource-info">
+                            {village.ressources.map((ressource) =>
+                                <span className="ressource-info">
 
-                        <span>Ressource 1 :</span>
-                        <img src={ressource1} className="ressource-img"/>
+                                    <span>{ressource.ressourceItem.name}</span>
+                                    <img src={ressource.ressourceItem.picture  == "wood" ? wood : ""} className="ressource-img"/>
 
-                    </span>
-                            <span className="ressource-info">
+                                </span>
+                            )}
 
-                        <span>Ressource 2 :</span>
-                        <img src={ressource1} className="ressource-img"/>
-
-                    </span>
-                            <span className="ressource-info">
-
-                        <span>Ressource 3 :</span>
-                       <img src={ressource1} className="ressource-img"/>
-
-                    </span>
 
                         </div>
                         <span className="upgrate-btn">
@@ -58,11 +51,7 @@ export default function Village({ name, level }) {
 
                     </div>
                     <div className="bat">
-                        <Batiment name="Hunterhouse" level=" 1"/>
-                        <Batiment name="Hunterhouse" level=" 1"/>
-                        <Batiment name="Hunterhouse" level=" 1"/>
-                        <Batiment name="Hunterhouse" level=" 1"/>
-                        <Batiment name="Hunterhouse" level=" 1"/>
+                        {village.batiments.map((batiment) =>  <Batiment batiment ={batiment}/>)}
                     </div>
                 </div>
             </div>

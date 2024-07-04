@@ -46,6 +46,7 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 			*/
 			var newVillage = _context.Villages.Add(new VillageDao {
 				Name = request.Name,
+				Level = 1,
 				Batiments = new List<BatimentDao> { b1},
 				Ressources = new List<RessourceDao>{r}
 			});

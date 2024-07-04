@@ -6,10 +6,14 @@ import './index.css';
 
 import './i18next.jsx'
 import {LanguageContextProvider} from "./contexts/languageContext.jsx";
-import Language from "./components/Language/index.jsx";
+import {VillageContextProvider} from "./contexts/VillageContext.jsx";
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+    <VillageContextProvider>
       <LanguageContextProvider>
-        <Router />
+              <Router />
       </LanguageContextProvider>
+    </VillageContextProvider>
 )
+

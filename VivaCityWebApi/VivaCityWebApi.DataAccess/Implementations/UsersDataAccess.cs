@@ -20,7 +20,11 @@ public class UsersDataAccess:IUserDataAccess
     public Task<UserDao?> GetUserById(int id) {
         return _context.Users
             .Include(x => x.Villages).ThenInclude((x) => x.Batiments)
+                                                                .ThenInclude(x => x.Cout)
+                                                                .ThenInclude(x => x.Ressource)
+                                                                .ThenInclude(x => x.RessourceItem)
             .Include(x => x.Villages).ThenInclude((x) => x.Ressources)
+                                                                .ThenInclude(x=>x.RessourceItem)
             .FirstOrDefaultAsync(x => x.Id == id);
     }
     public Task<UserDao?> SearchByName(string pseudo) {
