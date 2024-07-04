@@ -14,6 +14,10 @@ namespace VivaCityWebApi.WebAPI;
 
 public class Program {
 	private const string CORS_POLICY = "CORS_POLICY";
+	
+	
+
+
 	public static void Main(string[] args) {
 		
 
