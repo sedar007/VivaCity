@@ -11,6 +11,7 @@ public interface IUserDataAccess
     Task<IEnumerable<VillageDao?>> GetUserVillageByIdUser(int id);
     
     Task UpdateBatiment(UserUpdateBatimentRequest request);
+    Task<UserDao?> UpdateRessources(UserUpdateRessourcesRequest request);
 
     
     

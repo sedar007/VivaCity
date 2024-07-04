@@ -45,7 +45,7 @@ public class UsersDataAccess:IUserDataAccess
 
         await _context.SaveChangesAsync();
 
-        return await GetUserById(newGame.Entity.Id) ?? throw new NullReferenceException("Erreur lors de la creation du jeu");
+        return await GetUserById(newGame.Entity.Id) ?? throw new NullReferenceException("Erreur lors de la creation du village");
     }
     
     
@@ -64,13 +64,22 @@ public class UsersDataAccess:IUserDataAccess
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateBatiment(UserUpdateBatimentRequest request) {
-        UserDao user = await GetUserById(request.IdUser);
+    public async Task<UserDao> UpdateRessources(UserUpdateRessourcesRequest request) {
+        UserDao? user = await GetUserById(request.IdUser);
         if(user == null)
             throw new NullReferenceException("Utilisateur non trouvé");
-        UpgradeRessource(user); // Update ressource
+        await UpgradeRessource(user);
+        return  user ?? throw new NullReferenceException("Erreur lors de la mise à jour des ressources");
 
-        VillageDao village = user.Villages.FirstOrDefault(v => v.Id == request.IdVillage);
+    }
+
+    public async Task UpdateBatiment(UserUpdateBatimentRequest request) {
+        UserDao? user = await GetUserById(request.IdUser);
+        if(user == null)
+            throw new NullReferenceException("Utilisateur non trouvé");
+        await UpgradeRessource(user); // Update ressource
+
+        VillageDao? village = user.Villages.FirstOrDefault(v => v.Id == request.IdVillage);
         if(village == null)
             throw new NullReferenceException("Village non trouvé");
         
@@ -82,7 +91,7 @@ public class UsersDataAccess:IUserDataAccess
        
        
        _context.Users.Update(user);
-       _context.SaveChanges();
+       await _context.SaveChangesAsync();
  
     }
     
@@ -99,7 +108,7 @@ public class UsersDataAccess:IUserDataAccess
     }
 
 
-    private void UpgradeRessource(UserDao user) {
+    private async Task  UpgradeRessource(UserDao user) {
         if(user == null)
             throw new NullReferenceException("Utilisateur non trouvé");
 
@@ -108,10 +117,8 @@ public class UsersDataAccess:IUserDataAccess
                 UpdateB(batiment, village);
             village.UpdatedAt = DateTime.UtcNow;
         }
-
-        _context.Users.Update(user);
-        _context.SaveChanges();
-
+       _context.Users.Update(user); 
+       await _context.SaveChangesAsync();
     }
 
 

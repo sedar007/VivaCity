@@ -19,6 +19,8 @@ public interface IUserService
     Task DeleteUserAsync(int pseudo);
     
     Task UpdateBatiment(UserUpdateBatimentRequest request);
-    
-    
+
+    Task<UsersDto?> UpdateRessources(UserUpdateRessourcesRequest request);
+
+
 }

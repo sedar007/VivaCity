@@ -66,6 +66,21 @@ public class UserService : IUserService
             throw;
         }   
     }
+
+    public async  Task<UsersDto?> UpdateRessources(UserUpdateRessourcesRequest request)
+    {
+       
+        
+        try {
+            if(request == null)
+                throw new InvalidDataException("Erreur inconnue");
+            return (await userDataAccess.UpdateRessources(request))?.ToDto();
+        } catch (Exception e) {
+            _logger.LogError(e, e.Message);
+            throw;
+        }   
+        
+    }
     
     private void CheckPseudo(string pseudo) {
         if (string.IsNullOrWhiteSpace(pseudo)) {
