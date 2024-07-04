@@ -8,9 +8,11 @@ import './i18next.jsx'
 import {LanguageContextProvider} from "./contexts/languageContext.jsx";
 import {VillageIdContextProvider} from "./contexts/VillageIdContext.jsx";
 import {VillagesContextProvider} from "./contexts/VillagesContext.jsx";
+import {UsersContextProvider} from "./contexts/UsersContext.jsx";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+    <UsersContextProvider>
     <VillagesContextProvider>
         <VillageIdContextProvider>
           <LanguageContextProvider>
@@ -18,5 +20,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </LanguageContextProvider>
         </VillageIdContextProvider>
     </VillagesContextProvider>
+    </UsersContextProvider>
 )
 

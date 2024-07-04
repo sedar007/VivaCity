@@ -60,6 +60,9 @@ public class UsersDataAccess:IUserDataAccess
             throw new NullReferenceException("Utilisateur non trouvé");
 
         user.Villages.Add(v);
+       await UpdateRessources(new UserUpdateRessourcesRequest {
+            IdUser = user.Id
+        });
         _context.Users.Update(user);
         await _context.SaveChangesAsync();
     }
@@ -69,11 +72,11 @@ public class UsersDataAccess:IUserDataAccess
         if(user == null)
             throw new NullReferenceException("Utilisateur non trouvé");
         await UpgradeRessource(user);
-        return  user ?? throw new NullReferenceException("Erreur lors de la mise à jour des ressources");
+        return GetUserById(user.Id).Result ?? throw new NullReferenceException("Erreur lors de la mise à jour des batiments");
 
     }
 
-    public async Task UpdateBatiment(UserUpdateBatimentRequest request) {
+    public async Task<UserDao?> UpdateBatiment(UserUpdateBatimentRequest request) {
         UserDao? user = await GetUserById(request.IdUser);
         if(user == null)
             throw new NullReferenceException("Utilisateur non trouvé");
@@ -92,6 +95,8 @@ public class UsersDataAccess:IUserDataAccess
        
        _context.Users.Update(user);
        await _context.SaveChangesAsync();
+       
+       return GetUserById(user.Id).Result ?? throw new NullReferenceException("Erreur lors de la mise à jour des batiments");
  
     }
     
@@ -125,9 +130,9 @@ public class UsersDataAccess:IUserDataAccess
     private void UpdateB(BatimentDao batiment, VillageDao village) {
         foreach ( RessourceDao ressourceDao in village.Ressources)
             if (ressourceDao.RessourceItem == batiment.Cout.Ressource.RessourceItem) {
-                ressourceDao.Nbr +=
-                    Convert.ToInt32(Math.Round((DateTime.UtcNow - village.UpdatedAt).TotalSeconds * batiment.Level *
-                                               0.95));
+                int ressourcenbr = ressourceDao.Nbr + Convert.ToInt32(Math.Round((DateTime.UtcNow - village.UpdatedAt).TotalSeconds * batiment.Level *
+                    0.15)/100);
+                ressourceDao.Nbr  = ressourcenbr < ressourceDao.Max ? ressourcenbr : ressourceDao.Max;
                 return;
             }
 

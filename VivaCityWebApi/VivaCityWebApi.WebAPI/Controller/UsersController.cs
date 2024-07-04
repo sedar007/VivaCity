@@ -82,10 +82,12 @@ public class UsersController : ControllerBase
     [HttpPost("updateBatiment")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> UpdateBatiment(UserUpdateBatimentRequest request) {
+    public async Task<ActionResult<UsersDto?>> UpdateBatiment(UserUpdateBatimentRequest request) {
         try {
-            await _userService.UpdateBatiment(request);
-            return Ok();
+            var user = await _userService.UpdateBatiment(request);
+            if(user == null)
+                return BadRequest("Erreur lors de la mise à jour des batiments");
+            return Ok(user);
         } catch (InvalidDataException ex) {
             return BadRequest(ex.Message);
         }
@@ -96,13 +98,15 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<UsersDto?>> UpdateRessources(UserUpdateRessourcesRequest request) {
         try {
+            var user = await _userService.UpdateRessources(request);
+            if(user == null)
+                return BadRequest("Erreur lors de la mise à jour des ressources");
+            return Ok(user);
             return await _userService.UpdateRessources(request);
         } catch (InvalidDataException ex) {
             return BadRequest(ex.Message);
         }
     }
-    
-    
     
     
     
