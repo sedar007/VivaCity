@@ -20,13 +20,6 @@ export default function Footer() {
                         </span>
                     </div>
                 </div>
-    
-                <div
-                    className="p-4 text-center bg-black bg-opacity-20">
-                    Aller plus loin  &nbsp;
-                    <a style={{width:'20px', fontWeight:'bold', color: 'yellow', fontFamily :'cursive', background:'gray' }} className="text-white" href="https://github.com/Elanis"
-                    > Axel Soupée</a>
-                </div>
             </footer>
         );
     }

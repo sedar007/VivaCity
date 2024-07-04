@@ -9,4 +9,6 @@ public class VillageDao
     public IEnumerable<RessourceDao> Ressources {get; set;} = null!;
     public UserDao? User { get; set; }
     public int? UserId { get; set; }
+    
+    public DateTime UpdatedAt { get; set; }
 }

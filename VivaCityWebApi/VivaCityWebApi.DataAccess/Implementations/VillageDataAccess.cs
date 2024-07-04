@@ -48,7 +48,8 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 				Name = request.Name,
 				Level = 1,
 				Batiments = new List<BatimentDao> { b1},
-				Ressources = new List<RessourceDao>{r}
+				Ressources = new List<RessourceDao>{r},
+				UpdatedAt = DateTime.UtcNow
 			});
 			
 			//await _batimentDataAccess.AddVillage(newVillage.Entity, b1);

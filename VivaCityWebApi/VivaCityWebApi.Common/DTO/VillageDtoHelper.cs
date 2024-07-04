@@ -8,6 +8,7 @@ namespace VivaCityWebApi.Common.DTO {
 				Level = villageDao.Level,
 				Batiments = villageDao.Batiments?.Select(b => b.ToDto()),
 				Ressources = villageDao.Ressources?.Select(r => r.ToDto()),
+				UpdatedAt = villageDao.UpdatedAt,
 			};
 		}
 	}
