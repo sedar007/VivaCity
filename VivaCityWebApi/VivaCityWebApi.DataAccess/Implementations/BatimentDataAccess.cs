@@ -59,7 +59,8 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 				Name = request.Name,
 				Level = 1,
 				Type = request.Type,
-				Cout = c
+				Cout = c,
+				Picture = request.Picture,
 				//Village = request.Village,
 				//VillageId = Village.Id
 			});

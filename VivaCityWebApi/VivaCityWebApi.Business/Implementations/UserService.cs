@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using VivaCityWebApi.Business.Interfaces;
 using VivaCityWebApi.Common.DAO;
 using VivaCityWebApi.Common.DTO;
 using VivaCityWebApi.Common.Interfaces;
@@ -11,6 +12,7 @@ public class UserService : IUserService
 {
     private readonly IUserDataAccess userDataAccess;
     private readonly ILogger<UserService> _logger;
+    private readonly IVillageService _villageService;
 
     public UserService(IUserDataAccess userDataAccess, ILogger<UserService> logger)
     {
@@ -37,6 +39,47 @@ public class UserService : IUserService
             _logger.LogError(e, e.Message);
             throw;
         }
+    }
+    
+    public async Task<IEnumerable<VillageDto>> GetUserVillageByIdUser(int id)
+    {
+        try {
+            return (await userDataAccess.GetUserVillageByIdUser(id))
+                .Select(villageDao => villageDao.ToDto());
+        } catch (Exception e) {
+            _logger.LogError(e, e.Message);
+            throw;
+        }
+    }
+
+    public async Task UpdateBatiment(UserUpdateBatimentRequest request)
+    {
+        try {
+            if (request == null) 
+                throw new InvalidDataException("Erreur inconnue");
+            if(request.IdBatiment <= 0)
+                throw new InvalidDataException("IdBatiment peut pas être inférieur à 0");
+
+            await userDataAccess.UpdateBatiment(request);
+        } catch (Exception e) {
+            _logger.LogError(e, e.Message);
+            throw;
+        }   
+    }
+
+    public async  Task<UsersDto?> UpdateRessources(UserUpdateRessourcesRequest request)
+    {
+       
+        
+        try {
+            if(request == null)
+                throw new InvalidDataException("Erreur inconnue");
+            return (await userDataAccess.UpdateRessources(request))?.ToDto();
+        } catch (Exception e) {
+            _logger.LogError(e, e.Message);
+            throw;
+        }   
+        
     }
     
     private void CheckPseudo(string pseudo) {
@@ -68,6 +111,7 @@ public class UserService : IUserService
             throw;
         }
     }
+    
 
     public Task<UserDao> UpdateUserAsync(UserDao user)
     {
@@ -88,4 +132,25 @@ public class UserService : IUserService
             throw;
         }
     }
+    
+    public async Task AddVillage(UserAddVillageRequest request)
+    {
+        try {
+            if (request == null) 
+                throw new InvalidDataException("Erreur inconnue");
+            if(request.IdUser <= 0)
+                throw new InvalidDataException("IdUser peut pas être inférieur à 0");
+            
+            if(request.VillageName == null)
+                throw new InvalidDataException("VillageName ne peut pas être null");
+
+
+            await userDataAccess.AddVillage(request);
+        } catch (Exception e) {
+            _logger.LogError(e, e.Message);
+            throw;
+        }
+    }
+
+    
 }

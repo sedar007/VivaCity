@@ -59,5 +59,51 @@ public class UsersController : ControllerBase
         }
     }
     
+    [HttpPost("createVillage")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> AddVillage(UserAddVillageRequest userAddVillageRequest) {
+        try {
+            await _userService.AddVillage(userAddVillageRequest);
+            return Ok();
+        } catch (InvalidDataException ex) {
+            return BadRequest(ex.Message);
+        }
+    }
+    
+    [HttpGet("getVillges/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<VillageDto>>> GetUserVillageByIdUser(int id)
+    {
+        return Ok(await _userService.GetUserVillageByIdUser(id));
+    }
+    
+    [HttpPost("updateBatiment")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> UpdateBatiment(UserUpdateBatimentRequest request) {
+        try {
+            await _userService.UpdateBatiment(request);
+            return Ok();
+        } catch (InvalidDataException ex) {
+            return BadRequest(ex.Message);
+        }
+    }
+    
+    [HttpPost("updateRessources")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<UsersDto?>> UpdateRessources(UserUpdateRessourcesRequest request) {
+        try {
+            return await _userService.UpdateRessources(request);
+        } catch (InvalidDataException ex) {
+            return BadRequest(ex.Message);
+        }
+    }
+    
+    
+    
+    
     
 }
