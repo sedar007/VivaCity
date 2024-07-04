@@ -1,15 +1,16 @@
-// eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from 'react';
 import Village from '../../components/Village'
 import './index.css'
 import {useNavigate} from "react-router-dom";
-import useVillage from "../../hooks/useVillage.js";
-import useVillageSetter from "../../hooks/useVillageSetter.js";
-import {getVillageByUser, getVillagesByUser} from "../../business/villages.js";
-
+import useVillageId from "../../hooks/useVillageId.js";
+import useVillageIdSetter from "../../hooks/useVillageIdSetter.js";
+import { getVillagesByUser} from "../../business/villages.js";
+import useVillages from "../../hooks/useVillages.js";
+import useVillagesSetter from "../../hooks/useVillagesSetter.js";
 
 
 export default function Games() {
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -19,78 +20,73 @@ export default function Games() {
 		}
 	}, [navigate]);
 
-	const village = useVillage();
-	const setVillage = useVillageSetter();
-	const [t, setT] = useState(null);
+	let villages = useVillages();
+	const setVillages = useVillagesSetter();
 
-
-
-
-
-
-	const v =  (id) => {
-		return  ;
-
+	async function getVillages(){
+		const villages = await getVillagesByUser(localStorage.getItem('idUser'));
+		setVillages(villages);
+		return villages
 	}
-	useEffect(async() => {
-		await getVillageByUser(village).then((t) => {
-			setT(t);
-		}).catch((error) => {});
+	let [village, setVillage] = useState(null);
+	const villageId = useVillageId();
+	const setVillageId = useVillageIdSetter();
+
+	useEffect(() => {
 
 
-        }, [village]);
+		getVillages().then(
+			 (vill)=> {
+				 if(village === null)
+					 setVillage(vill[0]);
+			}
+		)
 
+	}, []);
 
-
-	if(!t)
-		return ;
-	console.log("ttttt")
-	console.log(t);
-	console.log("ttttt")
-
-	/*useEffect(() => {
-		document.title = `Clics ${village}`;
-	}, [village]); */
-
+	//console.log(villages)
 
 
 
+	useEffect(() => {
+		 function getData() {
+			try {
+				if(villages === null){
+					getVillages().then(
+						(vill)=> {
+							for(let v in vill) {
+								if (v.id === villageId) {
+									setVillage(v);
+									break;
+								}
+							}
+						}
+					)
+				}
+				
+			}
+			catch (error) {
+				console.error(error);
+			}
+		}
 
-	/*const village = useVillage();
-	const setVillage = useVillageSetter()*/
+		getData();
+
+		return () => {};
+        }, [villageId]);
 
 
 
-
-	/*const getVillages = async () => {
-		const villags = await getVillagesByUser(localStorage.getItem('idUser'));
-		console.log(villags);
-		return villags;
-	}
+	if(village == null)
+		return null;
 
 
-	const villages = getVillages(); */
-
-
-
-
-	//console.log(villags);
 
 	return (
 		<div className="games-container">
-
-
-
-
 			<div className="vill">
-				<Village village = {t} />
-
-
-
-
-
-
-
-
+				<Village village = {village} />
+			</div>
+		</div>
 	);
 }

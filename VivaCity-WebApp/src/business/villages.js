@@ -30,14 +30,6 @@ export async function getVillagesByUser(id){
     }
 }
 
-export async function getVillageByUser(id){
-    try{
-        const villages = await _getVillagesByUser(id);
-        if(villages === null || villages.length === 0)
-            throw new Error('Villages not found');
-        return  villages[0];
-    }
-    catch (error) {
-        throw error;
-    }
-}
+
+
+
