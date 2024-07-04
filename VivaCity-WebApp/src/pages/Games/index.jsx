@@ -85,11 +85,12 @@ export default function Games() {
 			<div className="vill">
 				<Village village = {t} />
 
-			</div>
 
 
 
-		</div>
+
+
+
 
 	);
 }

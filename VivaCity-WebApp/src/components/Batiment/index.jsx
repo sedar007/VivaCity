@@ -53,6 +53,7 @@ export default function Batiment({ batiment }) {
                 </div>
             </div>
             <img src={batimentImage} className="batiment-img" alt={batiment.name} />
+
             <span className="upgrade-button">
                 <button>Upgrade</button>
             </span>
