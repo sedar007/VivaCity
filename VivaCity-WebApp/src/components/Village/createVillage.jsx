@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "./createVillage.css"
 export default function CreateVillage({onCreateVillage}){
     const [villageName, setVillageName] = useState('');
     const [villageImage, setVillageImage] = useState(null);
@@ -35,37 +35,24 @@ export default function CreateVillage({onCreateVillage}){
     };
 
     return (
-        <div className="create-main">
-            <h2 className> Create a New Village</h2>
-            <form onSubmit={handleSubmit}>
-                {error && <p style={{ color : 'red'}}> {error}</p>}
-                {success && <p style={{ color: 'green' }}>{success}</p>}
+        <div className="create-main" >
+
+            <form onSubmit={handleSubmit} className="form-create">
+                {error && <p style={{color: 'red'}}> {error}</p>}
+                {success && <p style={{color: 'green'}}>{success}</p>}
 
 
-                <div>
-                    <label htmlFor="villageName">Village Name:</label>
-                    <input
-                        type="text"
-                        id="villageName"
-                        placeholder="Saisir le nom du village"
-                        value={villageName}
-                        onChange={handleNameChange}
-                        required
-                    />
-                </div>
+                <div className="contain">
+                    <div className="brand-logo"></div>
+                    <div className="brand-title">VivaCity</div>
+                    <div className="inputs">
+                        <label className="cont-label">Nom d'Utilisateur</label>
+                        <input type="text" placeholder="Entrer votre nom d'utilisateur" required="true" className="contain-input"/>
+                        <label className="cont-label">Ajouter un fichier</label>
+                        <input type="file"  required="true" className="contain-input"/>
+                        <button className="cont-btn" type="submit">ENVOYER</button>
+                    </div>
 
-                <div>
-                    <label htmlFor="villageImage">Upload Image:</label>
-                    <input
-                        type="file"
-                        id="villageImage"
-                        onChange={handleImageChange}
-                        required
-                    />
-                </div>
-
-                <div>
-                    <button type="submit">Create Village</button>
                 </div>
             </form>
         </div>

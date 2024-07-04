@@ -13,6 +13,7 @@ export default function Batiment({ name, level }) {
                 <span>Level:{level}</span>
 
             </div>
+
             <img src={batiment} className="batiment-img"/>
             <span className="upgrade-button">
                 <button >Upgrade</button>
