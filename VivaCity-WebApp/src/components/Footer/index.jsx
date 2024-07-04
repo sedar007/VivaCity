@@ -5,7 +5,8 @@ import './main.css';
 
 export default function Footer() {
         return (
-            <footer id="foot-name" className="text-center text-white bg-blue-900">
+            <>
+            {/*<footer id="foot-name" className="text-center text-white bg-blue-900">
                 <div className="container p-6 mx-auto">
                     <div className="">
                         <span className="flex items-center justify-center w-full">
@@ -21,7 +22,8 @@ export default function Footer() {
                     </div>
                 </div>
 
-            </footer>
+            </footer> */}
+            </>
         );
     }
       

@@ -31,3 +31,11 @@
     border: 1px solid #ccc;
     text-align: center;
 }
+
+.upgrateBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}

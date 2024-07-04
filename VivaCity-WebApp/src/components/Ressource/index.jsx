@@ -1,12 +1,9 @@
 import React from 'react';
-import './index.css';
-import wood1 from "../../assets/wood.png";
-import wood2 from "../../assets/maison.png";
+import '../Village/index.css';
+import wood from "../../assets/ressources/wood.png";
+import coin from "../../assets/ressources/coin.png";
+import stone from "../../assets/ressources/stone.png";
 
-/** Mouammar soule
- * @param {Les ressources avec une image coorespondant} param0 
- * @returns 
- */
 export default function Ressource({ressource}){
     let RessourceImage;
 
@@ -14,17 +11,20 @@ export default function Ressource({ressource}){
 
     switch (ressource.ressourceItem.picture) {
         case 'wood':
-            RessourceImage = wood1;
+            RessourceImage = wood;
             break;
-        case 'maison':
-            RessourceImage = wood2;
+        case 'coin':
+            RessourceImage = coin;
+            break;
+        case 'stone':
+            RessourceImage = stone;
             break;
         default:
             RessourceImage = '';
             break;
     }
     return (
-        
+
         <span className="ressource-info">
             <span>{ressource.ressourceItem.name}</span>
             <img src={RessourceImage} className="ressource-img" alt={ressource.ressourceItem.name} />

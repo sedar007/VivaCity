@@ -19,11 +19,26 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 		}
 		
 		public async Task<VillageDao> Create(VillageCreationRequest request) {
+			
 			BatimentDao b1 = await _batimentDataAccess.Create(new BatimentCreationRequest {
-					Name = "Batiment1",
+					Name = "Coinfort",
 					Type = 1,
-					Picture = "batiment" + 1,
-					nbCout = 10,
+					Picture = "coin",
+					nbCout = 70,
+			});
+			
+			BatimentDao b2 = await _batimentDataAccess.Create(new BatimentCreationRequest {
+				Name = "Sylvabastion",
+				Type = 2,
+				Picture = "wood",
+				nbCout = 30,
+			});
+			
+			BatimentDao b3 = await _batimentDataAccess.Create(new BatimentCreationRequest {
+				Name = "Rocfort",
+				Type = 3,
+				Picture = "stone",
+				nbCout = 35,
 			});
 			
 			RessourceDao r = await _ressourceDataAccess.Create(new RessourceCreationRequest {
@@ -47,7 +62,7 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 			var newVillage = _context.Villages.Add(new VillageDao {
 				Name = request.Name,
 				Level = 1,
-				Batiments = new List<BatimentDao> { b1},
+				Batiments = new List<BatimentDao> { b1, b2, b3},
 				Ressources = new List<RessourceDao>{r, r2, r3},
 				UpdatedAt = DateTime.UtcNow
 			});

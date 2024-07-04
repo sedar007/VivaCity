@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import village1 from "../../assets/village1.jpg";
-import wood from "../../assets/wood.png";
+import wood from "../../assets/ressources/wood.png";
 import './index.css';
 import './animation.css';
 import Batiment from "../Batiment/index.jsx";
-import CreateVillage from './createVillage.jsx';
-import Ressource from "./ressources.jsx";
+import Index from '../CreateVillage/index.jsx';
+import Ressource from "../Ressource/index.jsx";
 
 
 export default function Village({ village}) {
@@ -44,7 +44,7 @@ export default function Village({ village}) {
                     </div>
                     <div className="bat">
                         {village.batiments.map((batiment) => (
-                            <Batiment key={batiment.id} batiment={batiment} />
+                            <Batiment key={batiment.id} batiment={batiment} village={village} />
                         ))}
 
                     </div>
@@ -60,7 +60,7 @@ export default function Village({ village}) {
                     <button onClick={toggleCreateMain} className="create-btn">Cest par ici</button>
                 </span>}
 
-                {isCreateMainVisible && <CreateVillage></CreateVillage>}
+                {isCreateMainVisible && <Index></Index>}
 
             </div>
         </div>
