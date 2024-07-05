@@ -29,15 +29,21 @@ export default function Village({ village}) {
                 </div>
                 <div className="vil-bat">
                     <div className="ressource-container">
-                        <img src={village1} className="village-img" /> 
+                        <img src={village1} className="village-img" />
                         <div className="res">
                             {village.ressources.map((ressource) => (
                                 <Ressource key={ressource.id} ressource={ressource} />
                             ))}
                         </div>
-                        <span className="upgrade-btn">
-                            <button>{t('Upgrade')}</button>
+
+                <span className="upgrade-button">
+                    <button>
+                        <span className="upgrateBtn">
+                            <div> {t('Upgrade')} </div>
                         </span>
+                    </button>
+                </span>
+
                     </div>
                     <div className="bat">
                         {village.batiments.map((batiment) => (
@@ -57,7 +63,7 @@ export default function Village({ village}) {
                     <button onClick={toggleCreateMain} className="create-btn">{t('It\'s this way')}</button>
                 </span>}
 
-                {isCreateMainVisible && <Index></Index>}
+                {isCreateMainVisible && <Index village={village}></Index>}
 
             </div>
         </div>

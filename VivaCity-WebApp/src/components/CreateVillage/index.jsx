@@ -1,9 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./index.css"
 import {createVillage} from "../../business/users.js";
 import { useLanguageContext } from '../../contexts/languageContext.jsx';
 
-export default function Index(){
+export default function Index({village}){
     const [villageName, setVillageName] = useState('');
     const [villageImage, setVillageImage] = useState(null);
     const [error, setError] = useState(null);
@@ -35,9 +35,12 @@ export default function Index(){
 
 
     return (
-        <div className="create-main" >
-
-            <form onSubmit={handleSubmit} className="form-create" id="uploadForm"  encType="multipart/form-data">
+        <div className="create-main">
+            <div className="village-info" style={{paddingBottom:'20px',marginBottom:'20px'}}>
+                <h1>{village.name}</h1>
+                <span>Level: {village.level}</span>
+            </div>
+            <form onSubmit={handleSubmit} className="form-create" id="uploadForm" encType="multipart/form-data">
                 {error && <p style={{color: 'red'}}> {error}</p>}
                 {success && <p style={{color: 'green'}}>{success}</p>}
 
@@ -47,7 +50,8 @@ export default function Index(){
                     <div className="brand-title">VivaCity</div>
                     <div className="inputs">
                         <label className="cont-label">{t('Name of Village')}</label>
-                        <input type="text" placeholder="Entrer le nom du village" required="true" className="contain-input" onChange={handleNameChange}/>
+                        <input type="text" placeholder="Entrer le nom du village" required="true"
+                               className="contain-input" onChange={handleNameChange}/>
                         <button className="cont-btn" type="submit">{t('Send')}</button>
                     </div>
 
@@ -57,9 +61,7 @@ export default function Index(){
         </div>
 
 
-
     );
-
 
 
 }
