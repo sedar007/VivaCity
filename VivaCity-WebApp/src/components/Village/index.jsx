@@ -8,7 +8,8 @@ import Index from '../CreateVillage/index.jsx';
 import Ressource from "../Ressource/index.jsx";
 import { useLanguageContext } from '../../contexts/languageContext.jsx';
 
-export default function Village({ village}) {
+// eslint-disable-next-line react/prop-types
+export default function Village({village,getVillages}) {
 
 
        const [isCreateMainVisible, setCreateMainVisible] = useState(false);
@@ -63,7 +64,7 @@ export default function Village({ village}) {
                     <button onClick={toggleCreateMain} className="create-btn">{t('It\'s this way')}</button>
                 </span>}
 
-                {isCreateMainVisible && <Index village={village}></Index>}
+                {isCreateMainVisible && <Index village={village} getVillages={getVillages}></Index>}
 
             </div>
         </div>
