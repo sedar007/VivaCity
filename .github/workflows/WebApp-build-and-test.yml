@@ -2,9 +2,9 @@ name: Run Tests
 
 on:
   push:
-    branches: [ feature/testWebApp ]
+    branches: [ main ]
   pull_request:
-    branches: [ feature/testWebApp ]
+    branches: [ main ]
 
 jobs:
   build:
