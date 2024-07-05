@@ -15,6 +15,7 @@ import avatar from '../../assets/avatar.jpg';
 import Language from "../Language/index.jsx";
 import React from "react";
 import {useLanguageContext} from "../../contexts/languageContext.jsx";
+import ViewNavItems from "./viewNavItems.jsx";
 
 
 function classNames(...classes) {
@@ -65,7 +66,8 @@ export default function Header() {
                                                 )}
 
                                             >
-                                                {item.name}
+                                                <ViewNavItems name={item.name} />
+
                                             </a>
                                         ))}
                                     </div>
