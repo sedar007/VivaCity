@@ -8,5 +8,8 @@
   "ChoiceUser": "Choix Utilisateur",
   "Login": "Se Connecter",
   "CreateUser": "Créer un Utilisateur",
-  "User": "Entrer votre nom d'utilisateur"
+  "User": "Entrer votre nom d'utilisateur",
+  "Wood":" Bois",
+  "Resources" : "Ressources",
+  "Cash" : "monnaie"
 }

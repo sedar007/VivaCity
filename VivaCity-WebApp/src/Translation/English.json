@@ -8,5 +8,8 @@
   "ChoiceUser" : "Choice User",
   "Login" : "Login",
   "CreateUser" : "Create User",
-  "User" : "Please Enter Your Username"
+  "User" : "Please Enter Your Username",
+  "Wood":" Wood",
+  "Resources" : "Resources",
+  "Rash" : "cash"
 }

@@ -29,6 +29,7 @@ export default function Ressource({ressource}){
             <span>{ressource.ressourceItem.name}</span>
             <img src={RessourceImage} className="ressource-img" alt={ressource.ressourceItem.name} />
             <span>{ressource.nbr}/{ressource.max}</span>
+            {console.log(ressource.nbr)}
         </span>
     );
 }

@@ -16,7 +16,7 @@ export default function BuildBatiment({ level, onBuildBatiment}){
         if (isBuilding && timeLeft > 0) {
             const timer = setInterval(() => {
                 setTimeLeft(timeLeft - 1);
-            }, 1000);
+            }, 1000); // @ à Revoir Mouammar temps en seconde pour la construction et le temps d'attente
             return () => clearInterval(timer);
         } else if (isBuilding && timeLeft === 0) {
             setIsBuilding(false);
@@ -26,11 +26,11 @@ export default function BuildBatiment({ level, onBuildBatiment}){
 
     return (
         <div>
-            <h1>Construction Niveau: {level}</h1>
+            <h1 style={{color :'white', fontWeight:'bold',}} >Construction Niveau: {level}</h1>
             {isBuilding ? (
                 <p>Temps restant: {timeLeft}s</p>
             ) : (
-                <button onClick={startBuild}>Commencer la Construction</button>
+                <button style={{background:'blue', color :'white', fontWeight:'bold', width :'200px'}} onClick={startBuild}>Commencer la Construction</button>
             )}
         </div>
     );

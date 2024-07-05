@@ -67,6 +67,7 @@
 //     );
 // }
 
+
 import React, { useState } from 'react';
 import village1 from "../../assets/village1.jpg";
 import './index.css';
@@ -80,6 +81,7 @@ import BuildBatiment from '../BuildBatiment/index.jsx';
 
 export default function Village({ village }) {
     const [isCreateMainVisible, setCreateMainVisible] = useState(false);
+    const [resources, setResources] = useState(village.ressources);
 
     // Fonction pour changer l'état de la visibilité
     const toggleCreateMain = () => {
@@ -88,6 +90,19 @@ export default function Village({ village }) {
 
     const handleBuildCompletion = () => {
         console.log('Construction terminée');
+    }
+
+
+    const handleUpgrade = () => {
+        const updatedResources = resources.map((ressource) => {
+            const newNbr = ressource.nbr + 5;
+            return {
+                ...ressource,
+                nbr: newNbr >= ressource.max ? 0 : newNbr,
+            };
+        });
+        setResources(updatedResources);
+        console.log(setResources);
     };
 
     return (
@@ -104,10 +119,14 @@ export default function Village({ village }) {
                             {village.ressources.map((ressource) => (
                                 <Ressource key={ressource.id} ressource={ressource} />
                             ))}
-                            <EvolutionRessources initialRessources={{ wood: 0, coin: 0 }} />
+                            <EvolutionRessources
+                                initialRessources={{ wood: 0, coin: 0 }}
+                                batiments={village.batiments}
+                                villageLastUpdatedAt={village.updatedAt}
+                            />
                         </div>
                         <span className="upgrade-btn">
-                            <button>Upgrade</button>
+                            <button style={{background :'blue', color:'white', fontWeight :'bold'}} onClick={handleUpgrade}>Upgrade</button>
                         </span>
                         <span className="create-village">
                             <h1>Voulez-vous créer un nouveau village ?</h1>
@@ -138,22 +157,3 @@ export default function Village({ village }) {
         </div>
     );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
