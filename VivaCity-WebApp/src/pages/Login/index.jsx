@@ -107,7 +107,7 @@ export default function Login() {
                                                 alt="logo1"
                                             />
                                             <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold">
-                                                Welcome to Our Community VivaCity
+                                                {t('Welcome to Our Community VivaCity')}
                                             </h4>
                                         </div>
 
@@ -173,7 +173,7 @@ export default function Login() {
                                 >
                                     <div className="px-4 py-6 text-white md:mx-6 md:p-12">
                                         <h4 className="mb-6 text-xl font-semibold">
-                                            Join our community VivaCity
+                                            {t('Join our community VivaCity')}
                                         </h4>
                                         <img
                                             className="image-home"
@@ -182,10 +182,10 @@ export default function Login() {
                                         />
                                         <br/>
                                         <p className="text-sm">
-                                            Bienvenue dans notre communauté de jeu pour les villages.
+                                            {t('Welcome to our village gaming community.')}
                                         </p>
                                         <p className="text-sm">
-                                            Une expérience est à votre côté et vous allez y arriver à le faire.
+                                            {t('Experience is on your side and you will succeed in doing it.')}
                                         </p>
                                     </div>
                                 </div>

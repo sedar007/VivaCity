@@ -8,5 +8,18 @@
   "ChoiceUser": "Choix Utilisateur",
   "Login": "Se Connecter",
   "CreateUser": "Créer un Utilisateur",
-  "User": "Entrer votre nom d'utilisateur"
+  "User": "Entrer votre nom d'utilisateur",
+  "Welcome to Our Community VivaCity" :" Bienvenu dans notre communauté des Villages city",
+  "Join our community VivaCity" : "Rejoignez nous dans notre communauté",
+  "Welcome to our village gaming community.": "Bienvenue dans notre communauté de jeu pour les villages.",
+  "Experience is on your side and you will succeed in doing it.": "Une expérience est à votre côté et vous allez y arriver à le faire.",
+  "Upgrade" : "mise à niveau",
+  "wood" : "Bois",
+  "stone" : "pierre",
+  "It's this way" : "C'est par ici",
+  "coin" : "piece de monnaie",
+  "Do you want to create a new village?" : "Voulez-vous créer un nouveau village",
+  "Level" :"Niveau",
+  "Send" :"Envoyer",
+  "Name of Village" :"Nom du Village"
 }

@@ -125,8 +125,7 @@ public class UsersDataAccess:IUserDataAccess
        _context.Users.Update(user); 
        await _context.SaveChangesAsync();
     }
-
-
+    
     private void UpdateB(BatimentDao batiment, VillageDao village) {
         foreach ( RessourceDao ressourceDao in village.Ressources)
             if (ressourceDao.RessourceItem == batiment.Cout.Ressource.RessourceItem) {
