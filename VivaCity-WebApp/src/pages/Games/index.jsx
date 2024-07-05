@@ -85,7 +85,7 @@ export default function Games() {
 	return (
 		<div className="games-container">
 			<div className="vill">
-				<Village village = {village} />
+				<Village village={village} getVillages = {getVillages} />
 			</div>
 		</div>
 	);
