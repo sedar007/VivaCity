@@ -49,6 +49,50 @@ async function _canCreateUser(pseudo){
     }
 }
 
+async function _createVillage(villageName, idUser){
+    const res = await fetch(`${USER_API_URL}/createVillage`, {
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json',
+        },
+        body : JSON.stringify({
+            idUser: idUser,
+            villageName: villageName
+        })
+    });
+
+    if(!res.ok) {
+        throw new Error(`Erreur lors de la création du village`);
+    }
+
+    const jsObjet = await res.json();
+    console.log(jsObjet);
+   // return jsObjet;
+}
+
+async function _updateBatiment(idBatiment, idUser, idVillage){
+    const res = await fetch(`${USER_API_URL}/updateBatiment`, {
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json',
+        },
+        body : JSON.stringify({
+            idVillage: idVillage,
+            idBatiment: idBatiment,
+            idUser: idUser
+        })
+    });
+
+    if(!res.ok) {
+        throw new Error(`Erreur lors de la mise à jour du batiment`);
+    }
+
+    const jsObjet = await res.json();
+    console.log(jsObjet);
+    // return jsObjet;
+}
+
+
 export async function getUserByPseudo(pseudo){
     try{
         const user = _getUserByPseudo(pseudo);
@@ -70,4 +114,12 @@ export async function canUserBeCreate(pseudo){
 
 export async function createUser(pseudo){
     return _createUser(pseudo);
+}
+
+export async function createVillage(villageName, idUser){
+    await _createVillage(villageName, idUser);
+}
+
+export async function updateBatiment(idBatiment, idUser, idVillage){
+    await _updateBatiment(idBatiment, idUser, idVillage);
 }

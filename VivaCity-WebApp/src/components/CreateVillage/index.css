@@ -29,7 +29,7 @@
 .brand-logo {
     height: 100px;
     width: 100px;
-    background: url("../../../src/assets/vivacityLogo.png");
+    background: url("../../assets/vivacityLogo.png");
     background-size: contain;
     margin: auto;
     border-radius: 50%;
