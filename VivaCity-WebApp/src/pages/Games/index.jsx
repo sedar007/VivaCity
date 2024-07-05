@@ -7,6 +7,7 @@ import useVillageIdSetter from "../../hooks/useVillageIdSetter.js";
 import { getVillagesByUser} from "../../business/villages.js";
 import useVillages from "../../hooks/useVillages.js";
 import useVillagesSetter from "../../hooks/useVillagesSetter.js";
+import AudioPlayer from '../../components/Audio/index.jsx';
 
 
 export default function Games() {
@@ -43,9 +44,6 @@ export default function Games() {
 		)
 
 	}, []);
-
-	//console.log(villages)
-
 
 
 	useEffect(() => {
@@ -84,9 +82,12 @@ export default function Games() {
 
 	return (
 		<div className="games-container">
-			<div className="vill">
-				<Village village={village} getVillages = {getVillages} />
+			<div className="vill">  
+				<Village village = {village} getVillages = {getVillages}/>
+				<div> <AudioPlayer/></div> 
+
 			</div>
 		</div>
+		
 	);
 }
