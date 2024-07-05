@@ -35,8 +35,8 @@ export default function Rank() {
 	return (
 		<>
 			<ul role="list" className="divide-y divide-gray-100" style={{padding:'50px',background:'black'}} >
-				{rankings.map((ranking) => (
-					<li key={ranking.pseudo} className="flex justify-between gap-x-6 py-5"  >
+				{rankings.map((ranking, index) => (
+					<li key={index} className="flex justify-between gap-x-6 py-5"  >
 						<div className="flex min-w-0 gap-x-4">
 							<div className="min-w-0 flex-auto">
 								<p style={{color:'white',fontWeight:'bold'}} className="text-sm font-semibold leading-6 text-gray-900" >{ranking.pseudo}</p>
