@@ -6,9 +6,14 @@ import wood from "../../assets/batiments/wood.png";
 import coin from "../../assets/batiments/coin.png";
 import RessourcesItems from "../RessourcesItems/index.jsx";
 import {updateBatiment} from "../../business/users.js";
+import {getVillagesByUser} from "../../business/villages.js";
+import useUsersSetter from "../../hooks/useUsersSetter.js";
+import useVillagesSetter from "../../hooks/useVillagesSetter.js";
 // Importez d'autres images de batiment si nécessaire
 
 export default function Batiment({ batiment, village }) {
+    const setUsers = useUsersSetter();
+    const setVillages = useVillagesSetter();
     let batimentImage;
     console.log(batiment)
     switch (batiment.picture) {
@@ -26,10 +31,22 @@ export default function Batiment({ batiment, village }) {
             break;
     }
 
+    async function _updateBatiment(){
+        return await updateBatiment(batiment.id, localStorage.getItem("idUser"), village.id);
+    }
+
+
+
 
     function update() {
-        console.log("batiment");
-        updateBatiment(batiment.id, localStorage.getItem("idUser"), village.id)
+        _updateBatiment().then(
+            (u) => {
+                setUsers(u);
+                window.location.reload();
+
+            }
+        )
+
     }
 
     return (

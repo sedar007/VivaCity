@@ -8,6 +8,9 @@ import logo1 from "../../images/depositphotos_94218744-stock-illustration-house-
 import logo2 from "../../images/la-maison-de-lumiere-concue-par-mbeam-studio-d-art-leger-maison-composee-de-murs-lumineux-un-jeu-multiforme-de-couleurs-et-de-lumiere-2hmwyx0.jpg";
 import useUsers, {useUser} from "../../business/useUser.js";
 import {canUserBeCreate, createUser, getUserByPseudo} from "../../business/users.js";
+import useVillageId from "../../hooks/useVillageId.js";
+import useVillageIdSetter from "../../hooks/useVillageIdSetter.js";
+import useUsersSetter from "../../hooks/useUsersSetter.js";
 
 // Tableau pour simuler les utilisateurs
 let localUsers = [];
@@ -17,6 +20,7 @@ export default function Login() {
     const [pseudo, setPseudo] = useState('');
     const [selectedUserId, setSelectedUserId] = useState('');
     const users = useUsers();
+    const setUsers = useUsersSetter();
     const user = useUser(selectedUserId);
 
 
@@ -65,6 +69,7 @@ export default function Login() {
         setError('');
         setPseudo('');
         setSelectedUserId('');
+        setUsers(user);
         navigate('/games');
     }
 

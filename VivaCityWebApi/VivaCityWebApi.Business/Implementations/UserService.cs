@@ -52,7 +52,7 @@ public class UserService : IUserService
         }
     }
 
-    public async Task UpdateBatiment(UserUpdateBatimentRequest request)
+    public async Task<UsersDto?> UpdateBatiment(UserUpdateBatimentRequest request)
     {
         try {
             if (request == null) 
@@ -60,7 +60,7 @@ public class UserService : IUserService
             if(request.IdBatiment <= 0)
                 throw new InvalidDataException("IdBatiment peut pas être inférieur à 0");
 
-            await userDataAccess.UpdateBatiment(request);
+            return (await userDataAccess.UpdateBatiment(request))?.ToDto();
         } catch (Exception e) {
             _logger.LogError(e, e.Message);
             throw;

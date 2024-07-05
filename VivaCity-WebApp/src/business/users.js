@@ -89,7 +89,7 @@ async function _updateBatiment(idBatiment, idUser, idVillage){
 
     const jsObjet = await res.json();
     console.log(jsObjet);
-    // return jsObjet;
+    return jsObjet;
 }
 
 
@@ -109,11 +109,11 @@ export async function getUserByPseudo(pseudo){
 
 
 export async function canUserBeCreate(pseudo){
-   return _canCreateUser(pseudo);
+   return await _canCreateUser(pseudo);
 }
 
 export async function createUser(pseudo){
-    return _createUser(pseudo);
+    return await _createUser(pseudo);
 }
 
 export async function createVillage(villageName, idUser){
@@ -121,5 +121,5 @@ export async function createVillage(villageName, idUser){
 }
 
 export async function updateBatiment(idBatiment, idUser, idVillage){
-    await _updateBatiment(idBatiment, idUser, idVillage);
+    return await _updateBatiment(idBatiment, idUser, idVillage);
 }
