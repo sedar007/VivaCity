@@ -6,13 +6,14 @@ import './animation.css';
 import Batiment from "../Batiment/index.jsx";
 import Index from '../CreateVillage/index.jsx';
 import Ressource from "../Ressource/index.jsx";
-
+import { useLanguageContext } from '../../contexts/languageContext.jsx';
 
 // eslint-disable-next-line react/prop-types
 export default function Village({village,getVillages}) {
 
 
        const [isCreateMainVisible, setCreateMainVisible] = useState(false);
+       const { t } = useLanguageContext();
 
     // Fonction pour changer l'état de la visibilité
     const toggleCreateMain = () => {
@@ -25,7 +26,7 @@ export default function Village({village,getVillages}) {
             <div className="village-container">
                 <div className="village-info">
                     <h1>{village.name}</h1>
-                    <span>Level: {village.level}</span>
+                    <span>{t('Level')}: {village.level}</span>
                 </div>
                 <div className="vil-bat">
                     <div className="ressource-container">
@@ -35,10 +36,11 @@ export default function Village({village,getVillages}) {
                                 <Ressource key={ressource.id} ressource={ressource} />
                             ))}
                         </div>
+
                 <span className="upgrade-button">
                     <button>
                         <span className="upgrateBtn">
-                            <div> Upgrade </div>
+                            <div> {t('Upgrade')} </div>
                         </span>
                     </button>
                 </span>
@@ -58,8 +60,8 @@ export default function Village({village,getVillages}) {
                 </div>
 
                   {!isCreateMainVisible && <span className="create-village">
-                    <h1>Voulez vous Créer un nouveau village ?</h1>
-                    <button onClick={toggleCreateMain} className="create-btn">Cest par ici</button>
+                    <h1>{t('Do you want to create a new village?')}</h1>
+                    <button onClick={toggleCreateMain} className="create-btn">{t('It\'s this way')}</button>
                 </span>}
 
                 {isCreateMainVisible && <Index village={village} getVillages={getVillages}></Index>}

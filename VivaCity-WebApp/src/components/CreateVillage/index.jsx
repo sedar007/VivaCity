@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./index.css"
 import {createVillage} from "../../business/users.js";
+import { useLanguageContext } from '../../contexts/languageContext.jsx';
 
 // eslint-disable-next-line react/prop-types
 export default function Index({getVillages }){
@@ -8,7 +9,11 @@ export default function Index({getVillages }){
     const [villageImage, setVillageImage] = useState(null);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+
     const [villages, setVillages] = useState([]);
+
+    const { t } = useLanguageContext();
+
 
     const handleNameChange = (e) => {
         setVillageName(e.target.value);
@@ -65,10 +70,10 @@ export default function Index({getVillages }){
                     <div className="brand-logo"></div>
                     <div className="brand-title">VivaCity</div>
                     <div className="inputs">
-                        <label className="cont-label">Nom du village</label>
+                        <label className="cont-label">{t('Name of Village')}</label>
                         <input type="text" placeholder="Entrer le nom du village" required="true"
                                className="contain-input" onChange={handleNameChange}/>
-                        <button className="cont-btn" type="submit">ENVOYER</button>
+                        <button className="cont-btn" type="submit">{t('Send')}</button>
                     </div>
 
                 </div>
