@@ -82,9 +82,10 @@ export default function Games() {
 
 	return (
 		<div className="games-container">
-			<div className="vill">
-				<Village village = {village} />
+			<div className="vill">  
+				<Village village = {village} getVillages = {getVillages}/>
 				<div> <AudioPlayer/></div> 
+
 			</div>
 		</div>
 		

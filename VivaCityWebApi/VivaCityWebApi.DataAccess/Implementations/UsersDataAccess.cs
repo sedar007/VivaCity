@@ -34,7 +34,7 @@ public class UsersDataAccess:IUserDataAccess
     public async Task<UserDao> CreateUserAsync(UserCreationRequest request) {
         
         VillageDao v = await _villageDataAccess.Create(new VillageCreationRequest {
-            Name = "Village1",
+            Name = "Calais",
         });
   
   
@@ -90,7 +90,7 @@ public class UsersDataAccess:IUserDataAccess
        if(batiment == null)
             throw new NullReferenceException("Batiment non trouvé");
        
-       UpgradeBatiment(village, batiment);
+       UpgradeBatiment(village, batiment, user);
        
        
        _context.Users.Update(user);
@@ -101,10 +101,11 @@ public class UsersDataAccess:IUserDataAccess
     }
     
     
-    private void UpgradeBatiment(VillageDao village, BatimentDao batiment) {
+    private void UpgradeBatiment(VillageDao village, BatimentDao batiment, UserDao userDao) {
         foreach (RessourceDao ressource in village.Ressources)
             if (ressource.RessourceItem == batiment.Cout.Ressource.RessourceItem && batiment.Cout.Nbr <= ressource.Nbr)
             {
+                userDao.Scores += batiment.Level * 10;
                 ressource.Nbr -= batiment.Cout.Nbr;
                 batiment.Level++;
                 batiment.Cout.Nbr += Convert.ToInt32(Math.Round(batiment.Cout.Nbr * batiment.Level * 0.25));
@@ -125,13 +126,12 @@ public class UsersDataAccess:IUserDataAccess
        _context.Users.Update(user); 
        await _context.SaveChangesAsync();
     }
-
-
+    
     private void UpdateB(BatimentDao batiment, VillageDao village) {
         foreach ( RessourceDao ressourceDao in village.Ressources)
             if (ressourceDao.RessourceItem == batiment.Cout.Ressource.RessourceItem) {
                 int ressourcenbr = ressourceDao.Nbr + Convert.ToInt32(Math.Round((DateTime.UtcNow - village.UpdatedAt).TotalSeconds * batiment.Level *
-                    0.15)/100);
+                    0.50)/100);
                 ressourceDao.Nbr  = ressourcenbr < ressourceDao.Max ? ressourcenbr : ressourceDao.Max;
                 return;
             }

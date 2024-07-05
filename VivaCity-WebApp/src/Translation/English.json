@@ -8,5 +8,19 @@
   "ChoiceUser" : "Choice User",
   "Login" : "Login",
   "CreateUser" : "Create User",
-  "User" : "Please Enter Your Username"
+  "User" : "Please Enter Your Username",
+  "Welcome to Our Community VivaCity" :" Welcome to Our Community VivaCity",
+  "Join our community VivaCity" :"Join our community VivaCity",
+  "Welcome to our village gaming community.": "Welcome to our village gaming community.",
+  "Experience is on your side and you will succeed in doing it.": "Experience is on your side and you will succeed in doing it.",
+  "Upgrade" : "Upgrade",
+  "wood" : "Wood",
+  "stone" : "Stone",
+  "It's this way" : "It's this way",
+  "Coin" : "Coin",
+  "Do you want to create a new village?" : "Do you want to create a new village?",
+  "resources:wood": "Wood",
+  "Level" :"Level",
+  "Send" :"Send",
+  "Name of Village" :"Name of Village"
 }
