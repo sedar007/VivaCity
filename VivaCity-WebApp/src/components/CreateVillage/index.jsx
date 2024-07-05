@@ -53,14 +53,20 @@ export default function Index({getVillages }){
     if (!villages || villages.length === 0) {
         return <p>Loading villages...</p>;
     }
-    console.log(villages)
+    const handleSubmit2 = (e) =>{
+        e.preventDefault();
+        window.location.reload();
+    }
     return (
         <div className="create-main" >
-            {villages.map((village) => (
-            <div key={village.id} className="village-info" style={{paddingBottom:'20px',marginBottom:'20px'}}>
-                <h1>{village.name}</h1>
-                <span>Level: {village.level}</span>
-            </div>))}
+            <div className="village-list">
+                {villages.map((village) => (
+                    <div key={village.id} className="village-info" style={{paddingRight:'20px',marginLeft:'20px'}}>
+                        <h1>{village.name}</h1>
+                        <span>Level: {village.level}</span>
+                    </div>))}
+            </div>
+
             <form onSubmit={handleSubmit} className="form-create" id="uploadForm" encType="multipart/form-data">
                 {error && <p style={{color: 'red'}}> {error}</p>}
                 {success && <p style={{color: 'green'}}>{success}</p>}
@@ -73,7 +79,7 @@ export default function Index({getVillages }){
                         <label className="cont-label">{t('Name of Village')}</label>
                         <input type="text" placeholder="Entrer le nom du village" required="true"
                                className="contain-input" onChange={handleNameChange}/>
-                        <button className="cont-btn" type="submit">{t('Send')}</button>
+                        <button className="cont-btn" type="submit" onClick={handleSubmit2}>{t('Send')}</button>
                     </div>
 
                 </div>

@@ -98,5 +98,12 @@
     box-shadow: none;
 }
 
+.village-list{
+    height: 30%;
+    max-width: 50vh;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
 
+}
 
