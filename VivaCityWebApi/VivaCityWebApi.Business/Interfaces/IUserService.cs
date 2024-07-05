@@ -8,6 +8,7 @@ namespace VivaCityWebApi.Common.Interfaces;
 public interface IUserService
 {
     Task<IEnumerable<UsersDto>> GetUsersAsync();
+    
     Task<UsersDto?> GetUserById(int id);
     Task<IEnumerable<VillageDto>> GetUserVillageByIdUser(int id);
    
@@ -21,6 +22,7 @@ public interface IUserService
     Task<UsersDto?> UpdateBatiment(UserUpdateBatimentRequest request);
 
     Task<UsersDto?> UpdateRessources(UserUpdateRessourcesRequest request);
+    
 
 
 }

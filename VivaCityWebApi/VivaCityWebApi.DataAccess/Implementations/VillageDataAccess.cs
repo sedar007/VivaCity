@@ -42,20 +42,20 @@ namespace VivaCityWebApi.DataAccess.Implementations {
 			});
 			
 			RessourceDao r = await _ressourceDataAccess.Create(new RessourceCreationRequest {
-				Nbr = 100,
-				Max = 100,
+				Nbr = 1000,
+				Max = 1000,
 				RessourceItemId = 2,
 			});
 			
 			RessourceDao r2 = await _ressourceDataAccess.Create(new RessourceCreationRequest {
-				Nbr = 100,
-				Max = 100,
+				Nbr = 1500,
+				Max = 1500,
 				RessourceItemId = 1,
 			});
 			
 			RessourceDao r3 = await _ressourceDataAccess.Create(new RessourceCreationRequest {
-				Nbr = 100,
-				Max = 100,
+				Nbr = 2000,
+				Max = 2000,
 				RessourceItemId = 3,
 			});
 			
