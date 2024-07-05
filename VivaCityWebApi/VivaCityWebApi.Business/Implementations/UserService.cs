@@ -30,7 +30,7 @@ public class UserService : IUserService
             throw;
         }
     }
-
+    
     public async Task<UsersDto?> GetUserById(int id)
     {
         try {

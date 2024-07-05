@@ -55,6 +55,8 @@ public class Program {
 			builder.Services.AddTransient<IBatimentService, BatimentService>();
 			builder.Services.AddTransient<IVillageDataAccess, VillageDataAccess>();
 			builder.Services.AddTransient<IVillageService, VillageService>();
+			builder.Services.AddTransient<IRankingDataAccess, RankingDataAccess>();
+			builder.Services.AddTransient<IRankingService, RankingService>();
 
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
