@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 
 namespace VivaCityWebApi.WebApi.Tests {
-	public class GamesControllerTest {
+	public class UsersControllerTest {
 		public HttpClient client { get; }
 		public TestServer server { get; }
 
@@ -16,24 +16,24 @@ namespace VivaCityWebApi.WebApi.Tests {
 			PropertyNameCaseInsensitive = true,
 		};
 
-		public GamesControllerTest() {
+		public UsersControllerTest() {
 			var webApplicationFactory = new WebApplicationFactory<WebAPI.Program>();
 			client = webApplicationFactory.CreateClient();
 		}
 
-		/*[Fact]
+		[Fact]
 		public async void ShouldGet200_GET_AllGames() {
-			var response = await client.GetAsync("/api/Games/");
+			var response = await client.GetAsync("/api/Users/");
 
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-			var data = JsonSerializer.Deserialize<IEnumerable<GameDto>>(
+			var data = JsonSerializer.Deserialize<IEnumerable<UsersDto>>(
 				await response.Content.ReadAsStringAsync(),
 				jsonOptions
 			);
 
 			data.Should().NotBeEmpty();
-		} */
+		} 
 
 
 	}
